@@ -1,0 +1,90 @@
+.main_container {
+  background-color: white;
+  position: absolute;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  padding-top: 15px;
+  z-index: 40;
+}
+
+.container {
+  width: 90%;
+}
+
+.link {
+  text-decoration: none;
+  color: #333;
+  font-size: 20px;
+  font-weight: 600;
+}
+
+.all_item {
+  width: 100%;
+  margin-top: 30px;
+}
+
+.info_container {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  p {
+    font-weight: 600;
+    font-size: 25px;
+    cursor: pointer;
+  }
+}
+
+.button_text {
+  margin-top: 40px;
+  height: 40px;
+  width: 200px;
+  border: none;
+  background-color: #8ac1f4;
+  color: white;
+  font-size: 17px;
+  z-index: 10;
+  border-radius: 40px;
+  cursor: pointer;
+}
+.all_items {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 50px;
+}
+
+.button_item {
+  width: 100%;
+  cursor: pointer;
+  height: 35px;
+  color: white;
+  background-color: #8ac1f4;
+  border: none;
+  border-radius: 35px;
+  font-size: 16px;
+}
+
+.faq {
+  margin-top: 100px;
+}
+
+.faq_text {
+  font-weight: 600;
+  cursor: pointer;
+  font-size: 25px;
+}
+
+.iamge {
+  display: flex;
+  flex-direction: column;
+  button {
+    height: 30px;
+    background-color: #8ac1f4;
+    color: white;
+    border: none;
+    border-radius: 35px;
+    margin-top: 7px;
+  }
+}

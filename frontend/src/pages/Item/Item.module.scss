@@ -1,0 +1,61 @@
+.container {
+  margin-top: 40px;
+  display: flex;
+  justify-content: center;
+}
+.main_container {
+  width: 80%;
+}
+
+.top_container {
+  display: flex;
+  width: 100%;
+  margin-top: 60px;
+  align-items: center;
+  justify-content: space-around;
+}
+
+.img_container {
+  width: 30%;
+  height: 450px;
+  background-color: red;
+}
+
+.info_container {
+  min-height: 450px;
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.name_text {
+  font-size: 25px;
+  font-weight: 600;
+}
+
+.description_text {
+  margin-top: 15px;
+  font-size: 16px;
+}
+
+.maker_text {
+  width: 100%;
+  margin-top: 60px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.button {
+  width: 35%;
+  margin-left: 35%;
+  margin-top: 100px;
+  height: 45px;
+  font-weight: 600;
+  font-size: 16px;
+  background-color: #8ac1f4;
+  color: white;
+  cursor: pointer;
+  border-radius: 35px;
+  border: none;
+}

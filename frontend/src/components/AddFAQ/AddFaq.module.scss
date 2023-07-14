@@ -1,0 +1,46 @@
+.container {
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  margin-left: -5%;
+  margin-top: -295px;
+  display: flex;
+  z-index: 10;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background-color: rgba(0, 0, 0, 0.377);
+}
+
+.main_container {
+  width: 60%;
+  cursor: default;
+  height: 250px;
+  background-color: white;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding-top: 30px;
+  button {
+    height: 30px;
+    border: none;
+    background-color: #8ac1f4;
+    color: white;
+    font-weight: 600;
+    border-radius: 35px;
+    width: 170px;
+    margin-top: 35px;
+    cursor: pointer;
+  }
+}
+
+.input {
+  margin-top: 20px;
+  width: 80%;
+  input {
+    outline: none;
+    width: 100%;
+    height: 30px;
+    margin-top: 10px;
+  }
+}

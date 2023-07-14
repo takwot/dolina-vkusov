@@ -1,0 +1,42 @@
+.main_container {
+  width: 73%;
+  -webkit-box-shadow: -11px 8px 10px 0px rgba(34, 60, 80, 0.2);
+  -moz-box-shadow: -11px 8px 10px 0px rgba(34, 60, 80, 0.2);
+  box-shadow: -11px 8px 10px 0px rgba(34, 60, 80, 0.2);
+  height: 400px;
+  background-color: rgb(255, 255, 255);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.content {
+  width: 90%;
+  height: 90%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  div {
+    width: 50%;
+    height: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+}
+
+.bold {
+  font-weight: 600;
+  font-size: 16px;
+  color: #141617;
+  text-decoration: none;
+  cursor: pointer;
+  transition: 0.2s;
+  text-decoration: none;
+  overflow: hidden;
+  overflow: hidden;
+  &:hover {
+    color: #98bbb7;
+  }
+}
