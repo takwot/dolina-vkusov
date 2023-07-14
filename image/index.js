@@ -13,7 +13,7 @@ app.post("/img", (req, res) => {
   const file = req.files.file;
   const date = Date.now();
   const type = file.name.split(".").pop();
-  const fileName = date + "-postImg." + type;
+  const fileName = date + "-img." + type;
   const urlfile = `http://45.12.72.2:80/file?filename=${fileName}`;
   file.mv(`./files/${fileName}`, file);
   res
@@ -25,7 +25,7 @@ app.post("/img", (req, res) => {
 
 app.get("/file", (req, res) => {
   const { filename } = req.query;
-  fs.fs.readFile(`./files/${filename}`, (err, data) => {
+  fs.readFile(`./files/${filename}`, (err, data) => {
     if (err) {
       console.log(err);
       res.json({ message: "Some error" }).status(400);

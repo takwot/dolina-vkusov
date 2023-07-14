@@ -15,6 +15,7 @@ const Item = () => {
     api.getOneItem(id).then(res => {
       setItem(res.data);
       setImg(res.data.img);
+      console.log(res.data);
     });
   }, []);
 

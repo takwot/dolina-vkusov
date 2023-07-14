@@ -28,13 +28,21 @@ const Sweets = () => {
     <>
       <Header />
       <div className={styles.main_container}>
-        <div className={styles.container}>
+        <div
+          className={styles.container}
+          onClick={() => {
+            console.log(data);
+          }}
+        >
           {data.length == 0
             ? "Ничего не найдено"
             : data.map(function (el) {
                 return (
                   <CardItem
                     img={el.img[0]}
+                    // img={
+                    //   "http://localhost:80/file?filename=1689343074269-img.png"
+                    // }
                     key={el.id}
                     name={el.name}
                     price={el.price}
