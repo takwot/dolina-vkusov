@@ -6,7 +6,7 @@ import Header from "../../components/Header/Header";
 import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 
-const Sweets = () => {
+const Sweets = ({ setting }) => {
   const [data, setData] = useState([]);
   const path = useSelector(state => state.path.type);
   const url = useLocation();
@@ -26,7 +26,7 @@ const Sweets = () => {
 
   return (
     <>
-      <Header />
+      <Header setting={setting} />
       <div className={styles.main_container}>
         <div
           className={styles.container}
@@ -39,7 +39,7 @@ const Sweets = () => {
             : data.map(function (el) {
                 return (
                   <CardItem
-                    img={el.img[0]}
+                    img={el.img}
                     // img={
                     //   "http://localhost:80/file?filename=1689343074269-img.png"
                     // }

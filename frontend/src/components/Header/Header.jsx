@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Header.module.scss";
 import PermIdentityOutlinedIcon from "@mui/icons-material/PermIdentityOutlined";
 import { NavLink } from "react-router-dom";
@@ -12,8 +12,9 @@ import logo from "../../assets/logo.png";
 import Cooking from "./Cooking/Cooking";
 import Mobile from "./Mobile/Mobile";
 import { useSelector } from "react-redux";
+import api from "../../api/api";
 
-const Header = () => {
+const Header = ({ setting }) => {
   const [view, setView] = useState(false);
   const [page, setPage] = useState(0);
   const [showInput, setShowInput] = useState();
@@ -32,11 +33,16 @@ const Header = () => {
         <NavLink className={styles.text} to={"/raiting"}>
           Отзывы
         </NavLink>
-
         <div className={styles.reg_container}>
           <PermIdentityOutlinedIcon sx={{ color: "white" }} />
           {user.isReg == true ? (
-            <p>{user.user.name}</p>
+            <p
+              onClick={() => {
+                console.log(cart[0]);
+              }}
+            >
+              {user.user.name}
+            </p>
           ) : (
             <>
               <NavLink className={styles.text} to={"/login"}>
@@ -49,11 +55,11 @@ const Header = () => {
             </>
           )}
         </div>
-        {user.user.email == "I.maltsev95@gmail.com" && (
-          <NavLink className={styles.text} to={"/admin"}>
-            Админ панель
-          </NavLink>
-        )}
+        {/* {user.user.email == "I.maltsev95@gmail.com" && ( */}
+        <NavLink className={styles.text} to={"/admin"}>
+          Админ панель
+        </NavLink>
+        {/* )} */}
       </div>
       <div className={styles.bottom_container}>
         <div className={styles.container}>
@@ -70,8 +76,8 @@ const Header = () => {
           </NavLink>
           <div className={styles.cont_right}>
             <div className={styles.info_container}>
-              <p className={styles.number_text}>8 800 550-80-29</p>
-              <p className={styles.graph_text}>ежедневно с 9:00 до 20:00</p>
+              <p className={styles.number_text}>{setting.phone}</p>
+              <p className={styles.graph_text}>{setting.time}</p>
             </div>
           </div>
         </div>

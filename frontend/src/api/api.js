@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "http://62.217.180.188:4001/api/",
+  baseURL: "http://localhost:4001/api/",
 });
 
 const api = {
@@ -39,6 +39,12 @@ const api = {
   getCart(email) {
     return instance.get(`cart?email=${email}`);
   },
+  getSettings() {
+    return instance.get("settings");
+  },
+  setSettings(data) {
+    return instance.post("settings", data);
+  },
   createItem(data) {
     console.log(data.img[0]);
     return instance.post("item", data);
@@ -53,7 +59,8 @@ const api = {
     return instance.patch("carucel", { img, id });
   },
   deleteImg(id) {
-    return instance.delete("carucel", { id });
+    console.log(id);
+    return instance.delete(`carucel?id=${id}`);
   },
   allItem() {
     return instance.get("item");

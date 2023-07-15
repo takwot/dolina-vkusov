@@ -19,16 +19,23 @@ const AddItemModal = ({ setModal }) => {
   const [type, setType] = useState("Дары природы");
   const [miniType, setMiniType] = useState("");
   const [category, setCategory] = useState("");
-  const [file, setFile] = useState([]);
+  const [file, setFile] = useState("");
+  const [year, setYear] = useState("");
+  const [energy, setEnergy] = useState("");
+  const [structure, setStructure] = useState("");
+  const [photo, setPhoto] = useState(false);
 
   const clickHandle = () => {
     const data = {
       name,
       price,
-      img: [...file],
+      img: file,
       description: des,
       maker,
       type,
+      energy,
+      year,
+      structure,
       category,
       mini_category: miniType,
     };
@@ -60,7 +67,8 @@ const AddItemModal = ({ setModal }) => {
             const formData = new FormData();
             formData.append("file", e.target.files[0]);
             axios.post("http://45.12.72.2:80/img", formData).then(res => {
-              setFile(files => [...files, res.data.urlfile]);
+              setFile(res.data.urlfile);
+              setPhoto(true);
             });
           }}
         />
@@ -101,6 +109,36 @@ const AddItemModal = ({ setModal }) => {
             value={maker}
             onChange={e => {
               setMaker(e.target.value);
+            }}
+          />
+        </div>
+        <div className={styles.input_container}>
+          <p>Энергетическая ценность в 100г</p>
+          <input
+            placeholder="Энергетическая ценность в 100г"
+            value={energy}
+            onChange={e => {
+              setEnergy(e.target.value);
+            }}
+          />
+        </div>
+        <div className={styles.input_container}>
+          <p>Срок хранения</p>
+          <input
+            placeholder="Срок хранения"
+            value={year}
+            onChange={e => {
+              setYear(e.target.value);
+            }}
+          />
+        </div>
+        <div className={styles.input_container}>
+          <p>Состав</p>
+          <textarea
+            placeholder="Состав"
+            value={structure}
+            onChange={e => {
+              setStructure(e.target.value);
             }}
           />
         </div>
@@ -151,7 +189,7 @@ const AddItemModal = ({ setModal }) => {
               ref.current.click();
             }}
           >
-            Добавить {file.length != 0 && "еще"} фото
+            {photo ? "Изменить фото" : "Добавить фото"}
           </button>
           <button onClick={clickHandle}>Сохранить</button>
         </div>

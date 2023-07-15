@@ -1,38 +1,45 @@
-const Carucel = require("../model/Carucel");
+let images = [];
 
 const setImg = async (req, res) => {
   const { img } = req.body;
 
-  console.log(img);
-  const imgnew = new Carucel({
-    img,
-  });
+  images.push(img);
 
-  imgnew.save();
-
-  console.log(imgnew);
-
-  res.json({ me: "ok" });
+  res.json(images);
 };
 
 const getImg = async (req, res) => {
-  const data = await Carucel.find();
-
-  res.json(data);
+  res.json(images);
 };
 
 const changeImg = async (req, res) => {
   const { id, img } = req.body;
-  await Carucel.findOneAndUpdate({ id }, { img });
-  res.json({ me: "ok" });
+
+  images[id] = img;
+
+  res.json(images);
 };
 
 const deleteImg = async (req, res) => {
-  const { id } = req.body;
+  const { id } = req.query;
 
-  await Carucel.findOneAndDelete({ id });
+  console.log(id);
 
-  res.json({ me: "ok" });
+  let newArr = [];
+
+  images.map(function (el) {
+    if (el !== id) {
+      newArr.push(el);
+    }
+  });
+
+  console.log(newArr);
+
+  images = newArr;
+
+  console.log(images);
+
+  res.json(images);
 };
 
 module.exports = {

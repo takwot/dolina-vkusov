@@ -81,7 +81,7 @@ const Carucel = ({ children, lenght }) => {
           className={styles.all_pages}
           style={{ transform: `translateX(${page}px)` }}
         >
-          {pages}
+          {children}
         </div>
       </div>
       <div className={styles.arrow_mobile}>

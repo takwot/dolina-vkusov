@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import api from "../../api/api";
 
-const Honny = () => {
+const Honny = ({ setting }) => {
   const [data, setData] = useState([]);
   const path = useSelector(state => state.path.type);
   const category = useSelector(state => state.path.category);
@@ -32,7 +32,7 @@ const Honny = () => {
   }, [path, url]);
   return (
     <>
-      <Header />
+      <Header setting={setting} />
       <div className={styles.main_container}>
         <div className={styles.container}>
           {data.length == 0

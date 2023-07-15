@@ -1,7 +1,7 @@
 const User = require("../model/User");
 
 const createUser = async (req, res) => {
-  const { email, password, name } = req.body;
+  const { email, password, name, phone } = req.body;
 
   const isExist = await User.findOne({ email });
 
@@ -10,6 +10,7 @@ const createUser = async (req, res) => {
       email,
       password,
       name,
+      phone,
     });
 
     newUser.save();

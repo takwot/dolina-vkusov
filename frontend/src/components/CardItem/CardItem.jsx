@@ -4,25 +4,34 @@ import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import FavoriteIcon from "@mui/icons-material/Favorite";
 import { NavLink } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setCart, setFavourity } from "../../store/reducers/userReducer";
 
 const CardItem = ({ img, name, price, admin, id }) => {
   const [bg, setBg] = useState(false);
+
+  const cart = useSelector(state => state.user.cart);
+  const favourity = useSelector(state => state.user.favourity);
+
   const [like, setLike] = useState(false);
   const dispatch = useDispatch();
   return (
     <div className={styles.card_container}>
       <NavLink style={{ textDecoration: "none" }} to={`/item/${id}`}>
-        <div className={styles.img_container}>
+        <div
+          className={styles.img_container}
+          onClick={() => {
+            console.log(cart);
+          }}
+        >
           <img src={img} />
-        </div>
-        <div className={styles.name_container}>
-          <p>{name}</p>
         </div>
       </NavLink>
       <div className={styles.price_container}>
         <NavLink style={{ textDecoration: "none" }} to={`/item/${id}`}>
+          <div className={styles.name_container}>
+            <p>{name}</p>
+          </div>
           <p className={styles.price_text}>{price} руб</p>
         </NavLink>
         <div className={styles.cart_container}>
@@ -33,11 +42,15 @@ const CardItem = ({ img, name, price, admin, id }) => {
                 onClick={() => {
                   setBg(!bg);
                   dispatch(
-                    setCart({
-                      img,
-                      name,
-                      price,
-                    })
+                    setCart([
+                      ...cart,
+                      {
+                        img,
+                        name,
+                        price,
+                        id,
+                      },
+                    ])
                   );
                 }}
               >
@@ -65,11 +78,14 @@ const CardItem = ({ img, name, price, admin, id }) => {
                   onClick={() => {
                     setLike(!like);
                     dispatch(
-                      setFavourity({
-                        img,
-                        name,
-                        price,
-                      })
+                      setFavourity([
+                        ...favourity,
+                        {
+                          img,
+                          name,
+                          price,
+                        },
+                      ])
                     );
                   }}
                   sx={{

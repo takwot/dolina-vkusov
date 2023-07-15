@@ -5,7 +5,7 @@ import { useParams } from "react-router-dom";
 import api from "../../api/api";
 import Carucel from "./Carucel/Carucel";
 
-const Item = () => {
+const Item = ({ setting }) => {
   const { id } = useParams();
 
   const [item, setItem] = useState({});
@@ -21,28 +21,32 @@ const Item = () => {
 
   return (
     <>
-      <Header />
+      <Header setting={setting} />
       <div className={styles.container}>
         <div className={styles.main_container}>
           <div className={styles.top_container}>
-            <div className={styles.img_container}>
-              <Carucel>
-                {img.map(function (el) {
-                  <img src={el} />;
-                })}
-              </Carucel>
+            <p>{item.name}</p>
+          </div>
+          <div className={styles.info_container}>
+            <div className={styles.image}>
+              <img src={item.img} />
             </div>
-            <div className={styles.info_container}>
-              <div>
-                <p className={styles.name_text}>{item.name}</p>
-                <p className={styles.description_text}>{item.description}</p>
-                <div className={styles.maker_text}>
-                  Производитель
-                  <p>{item.maker}</p>
-                </div>
-              </div>
-              <button className={styles.button}>Купить</button>
+            <div className={styles.info}>
+              <p className={styles.main_text}>Энергетическая ценность</p>
+              <p className={styles.text}>{item.description}</p>
+              <p className={styles.main_text}>Производитель</p>
+              <p className={styles.text}>{item.maker}</p>
+              <p className={styles.main_text}>Срок хранения</p>
+              <p className={styles.text}>{item.year}</p>
+              <p className={styles.main_text}>Тип товара</p>
+              <p className={styles.text}>{item.type}</p>
+              <p className={styles.main_text}>Категория товара</p>
+              <p className={styles.text}>{item.category}</p>
             </div>
+          </div>
+          <div className={styles.des_container}>
+            <p className={styles.main_text}>Описание товара</p>
+            <p className={styles.text}>{item.description}</p>
           </div>
         </div>
       </div>

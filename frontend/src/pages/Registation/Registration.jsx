@@ -9,8 +9,11 @@ import { useDispatch } from "react-redux";
 import { setUser } from "../../store/reducers/userReducer";
 import { useCookies } from "react-cookie";
 import Header from "../../components/Header/Header";
+import PhoneOutlinedIcon from "@mui/icons-material/PhoneOutlined";
+import Snackbar from "@mui/material/Snackbar";
+import Alert from "@mui/material/Alert";
 
-const Registration = () => {
+const Registration = ({ setting }) => {
   const dispatch = useDispatch();
   const [cookies, setCookie, removeCookie] = useCookies();
 
@@ -18,30 +21,68 @@ const Registration = () => {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
 
+  const [open, setOpen] = useState(false);
+  const [warrning, setWarning] = useState("success");
+
   const clickHandle = () => {
     api.createUser(email, name, password).then(res => {
-      if (res.status == 200) {
+      if (res.data.message == "Error") {
+        setWarning("error");
+        setOpen(true);
+      } else {
         setCookie("email", email);
         setCookie("password", password);
         dispatch(setUser(res.data));
+        setWarning("success");
+        setOpen(true);
       }
-      console.log(res.data);
     });
   };
 
   return (
     <>
-      <Header />
+      <Header setting={setting} />
+
       <div className={styles.main_container}>
         <div className={styles.login_container}>
-          <p className={styles.main_text}>Вход</p>
+          <p className={styles.main_text}>Регистрация</p>
           <div className={styles.input_cotainer} style={{ marginTop: "40px" }}>
+            <PhoneOutlinedIcon
+              sx={{
+                position: "absolute",
+                color: "#333",
+                fontSize: 25,
+                marginTop: "-24px",
+                marginLeft: "20px",
+                zIndex: 0,
+              }}
+            />
+            <input
+              placeholder="Введите номер телефона *"
+              value={name}
+              onChange={e => {
+                setName(e.target.value);
+              }}
+            />
+          </div>
+          <Snackbar
+            open={open}
+            autoHideDuration={2000}
+            onClose={() => {
+              setOpen(false);
+            }}
+          >
+            <Alert variant="filled" severity={warrning}>
+              {warrning === "error" ? "Произошла ошибка!" : "Успешно!"}
+            </Alert>
+          </Snackbar>
+          <div className={styles.input_cotainer}>
             <PersonOutlineOutlinedIcon
               sx={{
                 position: "absolute",
                 color: "#333",
                 fontSize: 25,
-                marginTop: "-26px",
+                marginTop: "-24px",
                 marginLeft: "20px",
                 zIndex: 0,
               }}
@@ -60,7 +101,7 @@ const Registration = () => {
                 position: "absolute",
                 color: "#333",
                 fontSize: 25,
-                marginTop: "-26px",
+                marginTop: "-24px",
                 marginLeft: "20px",
                 zIndex: 0,
               }}
@@ -79,7 +120,7 @@ const Registration = () => {
                 position: "absolute",
                 color: "#333",
                 fontSize: 25,
-                marginTop: "-26px",
+                marginTop: "-24px",
                 marginLeft: "20px",
                 zIndex: 0,
               }}

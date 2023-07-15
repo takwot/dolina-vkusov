@@ -6,7 +6,7 @@ import { useSelector } from "react-redux";
 import { useLocation } from "react-router-dom";
 import api from "../../api/api";
 
-const WeatherGift = () => {
+const WeatherGift = ({ setting }) => {
   const [data, setData] = useState([]);
   const path = useSelector(state => state.path.type);
   const url = useLocation();
@@ -25,7 +25,7 @@ const WeatherGift = () => {
   }, [path, url]);
   return (
     <>
-      <Header />
+      <Header setting={setting} />
       <div className={styles.main_container}>
         <div className={styles.container}>
           {data.length == 0

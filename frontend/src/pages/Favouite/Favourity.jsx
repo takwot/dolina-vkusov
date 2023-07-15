@@ -1,24 +1,50 @@
 import React from "react";
 import styles from "./Favourity.module.scss";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import CardItem from "../../components/CardItem/CardItem";
 import Header from "../../components/Header/Header";
+import { setFavourity } from "../../store/reducers/userReducer";
 
-const Favourity = () => {
-  // const cart = useSelector(state => state.user.favourity);
+const Favourity = ({ setting }) => {
+  const favourity = useSelector(state => state.user.favourity);
 
-  const cart = [];
+  const dispatch = useDispatch();
 
   return (
     <>
-      <Header />
+      <Header setting={setting} />
       <div className={styles.container}>
         <div className={styles.main_container}>
-          {cart.length == 0 ? (
+          {favourity.length == 0 ? (
             <p className={styles.text}>Тут пока пусто</p>
           ) : (
-            cart.map(function (el) {
-              return <CardItem img={el.img} name={el.name} price={el.price} />;
+            favourity.map(function (el) {
+              return (
+                <div>
+                  <CardItem
+                    img={el.img}
+                    name={el.name}
+                    price={el.price}
+                    admin={true}
+                    id={el.id}
+                  />
+                  <button
+                    className={styles.button}
+                    onClick={() => {
+                      let newArray = [];
+
+                      favourity.map(img => {
+                        if (img.id != el.id) {
+                          newArray.push(img);
+                        }
+                      });
+                      dispatch(setFavourity(newArray));
+                    }}
+                  >
+                    Удалить
+                  </button>
+                </div>
+              );
             })
           )}
         </div>

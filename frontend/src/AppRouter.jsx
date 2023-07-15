@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { useCookies } from "react-cookie";
@@ -25,10 +25,16 @@ import Item from "./pages/Item/Item";
 const AppRouter = () => {
   const isReg = useSelector(state => state.user.isReg);
   const [cookies, setCookie, removeCookie] = useCookies();
+
+  const [setting, setSetting] = useState({});
+
   const dispatch = useDispatch();
   const email = cookies.email;
   const password = cookies.password;
   useEffect(() => {
+    api.getSettings().then(res => {
+      setSetting({ time: res.data.time, phone: res.data.phone });
+    });
     api.loginUser(email, password).then(res => {
       if (res.data.message == "Error") {
       } else {
@@ -41,24 +47,30 @@ const AppRouter = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route element={<Main />} path="/" />
-        <Route element={<About />} path="/about" />
-        <Route element={<Cart />} path="/cart" />
-        <Route element={<Favourity />} path="/favourites" />
+        <Route element={<Main setting={setting} />} path="/" />
+        <Route element={<About setting={setting} />} path="/about" />
+        <Route element={<Cart setting={setting} />} path="/cart" />
+        <Route element={<Favourity setting={setting} />} path="/favourites" />
         {isReg === false && (
           <>
-            <Route element={<Login />} path="/login" />
-            <Route element={<Registration />} path="/registration" />
+            <Route element={<Login setting={setting} />} path="/login" />
+            <Route
+              element={<Registration setting={setting} />}
+              path="/registration"
+            />
           </>
         )}
-        <Route element={<WeatherGift />} path="/weather-gift" />
-        <Route element={<Sweets />} path="/sweets" />
-        <Route element={<Honny />} path="/honny" />
-        <Route element={<Cooking />} path="/cooking" />
+        <Route
+          element={<WeatherGift setting={setting} />}
+          path="/weather-gift"
+        />
+        <Route element={<Sweets setting={setting} />} path="/sweets" />
+        <Route element={<Honny setting={setting} />} path="/honny" />
+        <Route element={<Cooking setting={setting} />} path="/cooking" />
         <Route element={<Navigate to={"/"} />} path="*" />
         <Route element={<Admin />} path="/admin" />
-        <Route element={<Raiting />} path="/raiting" />
-        <Route element={<Item />} path="/item/:id" />
+        <Route element={<Raiting setting={setting} />} path="/raiting" />
+        <Route element={<Item setting={setting} />} path="/item/:id" />
       </Routes>
       <Footer />
     </BrowserRouter>

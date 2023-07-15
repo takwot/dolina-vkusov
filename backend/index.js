@@ -3,7 +3,7 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 
 mongoose
-  .connect("mongodb://database:27017/store", {
+  .connect("mongodb://localhost:27017/store", {
     useNewUrlParser: true,
   })
   .then(() => console.log("MongoDB Connected"))
@@ -18,12 +18,14 @@ const itemRouter = require("./routes/item.route");
 const raitingRouter = require("./routes/raiting.route");
 const faqRouter = require("./routes/faq.route");
 const carucelRouter = require("./routes/carucel.route");
+const settingsRouter = require("./routes/setting.route");
 
 app.use("/api", userRouter);
 app.use("/api", itemRouter);
 app.use("/api", raitingRouter);
 app.use("/api", faqRouter);
 app.use("/api", carucelRouter);
+app.use("/api", settingsRouter);
 
 app.listen(4001, () => {
   console.log("Running");

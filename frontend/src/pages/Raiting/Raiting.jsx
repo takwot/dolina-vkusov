@@ -4,7 +4,7 @@ import styles from "./Raiting.module.scss";
 import api from "../../api/api";
 import { useSelector } from "react-redux";
 
-const Raiting = () => {
+const Raiting = ({ setting }) => {
   const [raiting, setRaiting] = useState([]);
 
   const [text, setText] = useState("");
@@ -19,7 +19,7 @@ const Raiting = () => {
 
   return (
     <>
-      <Header />
+      <Header setting={setting} />
       <div className={styles.container}>
         <div className={styles.main_container}>
           {name.isReg == true && (

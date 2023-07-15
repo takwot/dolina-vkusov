@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./Main.module.scss";
-import img from "../../assets/desctop.png";
+import destop_img from "../../assets/desctop.png";
 import first from "../../assets/first_img.png";
 import second from "../../assets/second_img.png";
 import third from "../../assets/third_img.png";
@@ -11,21 +11,30 @@ import { NavLink } from "react-router-dom";
 import Questions from "../../components/Questions/Questions";
 import { useSelector } from "react-redux";
 import Header from "../../components/Header/Header";
+import api from "../../api/api";
 
-const Main = () => {
+const Main = ({ setting }) => {
   const [img, setImg] = useState([]);
+
+  useEffect(() => {
+    api.getImg().then(res => {
+      setImg(res.data);
+      console.log(res.data);
+    });
+  }, []);
+
   const user = useSelector(state => state.user);
   return (
     <>
-      <Header />
+      <Header setting={setting} />
       <div className={styles.main_container}>
         <Carucel>
-          {img.map(function (el) {
-            return <img src={el.img} />;
-          })}
+          {img.map((el, index) => (
+            <img src={el} key={index} />
+          ))}
         </Carucel>
         <div className={styles.img_container}>
-          <img src={img} className={styles.des_img} />
+          <img src={destop_img} className={styles.des_img} />
           <img src={first} className={styles.mobile_img} />
           <img src={second} className={styles.mobile_img} />
           <img src={third} className={styles.mobile_img} />

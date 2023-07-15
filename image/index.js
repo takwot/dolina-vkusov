@@ -13,7 +13,7 @@ app.post("/img", (req, res) => {
   const file = req.files.file;
   const date = Date.now();
   const type = file.name.split(".").pop();
-  const fileName = date + "-img." + type;
+  const fileName = date + type;
   const urlfile = `http://45.12.72.2:80/file?filename=${fileName}`;
   file.mv(`./files/${fileName}`, file);
   res

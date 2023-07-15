@@ -1,5 +1,5 @@
 .container {
-  position: absolute;
+  position: fixed;
   width: 100vw;
   height: 100vh;
   margin-left: -5%;
@@ -15,7 +15,8 @@
 .main_container {
   width: 60%;
   cursor: default;
-  height: 600px;
+  height: 800px;
+  border-radius: 15px;
   background-color: white;
   display: flex;
   align-items: center;

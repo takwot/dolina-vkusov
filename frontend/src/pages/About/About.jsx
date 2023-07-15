@@ -6,10 +6,10 @@ import photo3 from "../../assets/third_img.png";
 import photo4 from "../../assets/fourth_img.png";
 import Header from "../../components/Header/Header";
 
-const About = () => {
+const About = ({ setting }) => {
   return (
     <>
-      <Header />
+      <Header setting={setting} />
       <div className={styles.main_container}>
         <div className={styles.cont}>
           <div className={styles.container}>

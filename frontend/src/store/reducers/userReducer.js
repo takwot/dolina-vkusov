@@ -12,17 +12,23 @@ const SET_FAVOURITY = "SET_FAVOURITY";
 export function userReducer(state = defaultState, action) {
   switch (action.type) {
     case SET_USER: {
-      return { user: action.payload, isReg: true };
-    }
-    case SET_CART: {
-      console.log(action.payload.length);
       return {
         ...state,
-        cart: [action.payload],
+        user: action.payload,
+        isReg: true,
+        cart: action.payload.cart,
+        favourity: action.payload.favourite,
+      };
+    }
+    case SET_CART: {
+      console.log(action.payload);
+      return {
+        ...state,
+        cart: action.payload,
       };
     }
     case SET_FAVOURITY: {
-      return { ...state, favourity: [action.payload] };
+      return { ...state, favourity: action.payload };
     }
     default:
       return state;

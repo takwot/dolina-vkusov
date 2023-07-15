@@ -15,6 +15,10 @@ const Admin = () => {
   const [text, setText] = useState("Доступные товары");
   const [faq, setFaq] = useState(false);
   const [img, setImg] = useState([]);
+  const [settings, setSettings] = useState({
+    phone: "",
+    time: "",
+  });
 
   const ref = useRef();
   const second = useRef();
@@ -27,14 +31,20 @@ const Admin = () => {
 
   useEffect(() => {
     api.getImg().then(res => {
-      setImg(res.data);
       console.log(res.data);
+      setImg(res.data);
     });
   }, []);
 
   useEffect(() => {
     api.allItem().then(res => {
       setCart(res.data);
+    });
+  }, []);
+
+  useEffect(() => {
+    api.getSettings().then(res => {
+      setSettings(res.data);
     });
   }, []);
 
@@ -71,6 +81,14 @@ const Admin = () => {
             >
               Часто задаваемые вопросы
             </p>
+            <p
+              className={styles.faq_text}
+              onClick={() => {
+                setText("Настройки");
+              }}
+            >
+              Настройки
+            </p>
           </div>
           {text == "Доступные товары" && (
             <div className={styles.item_cnbonae}>
@@ -90,7 +108,7 @@ const Admin = () => {
                         key={el._id}
                         name={el.name}
                         price={el.price}
-                        img={el.img[0]}
+                        img={el.img}
                         admin={true}
                       />
                       <button
@@ -174,14 +192,10 @@ const Admin = () => {
               {img.map(function (el, index) {
                 return (
                   <div className={styles.iamge}>
-                    <img
-                      src={el.img}
-                      style={{ width: "300px", height: "150px" }}
-                    />
+                    <img src={el} style={{ width: "300px", height: "150px" }} />
                     <button
                       onClick={() => {
-                        const id = el.id;
-                        api.deleteImg(id).then(res => {
+                        api.deleteImg(el).then(res => {
                           api.getImg().then(res => {
                             setImg(res.data);
                           });
@@ -207,7 +221,7 @@ const Admin = () => {
                         axios
                           .post("http://45.12.72.2:80/img", formData)
                           .then(res => {
-                            const id = el.id;
+                            const id = index;
                             api.addImg(res.data.urlfile, id).then(() => {
                               api.getImg().then(res => {
                                 setImg(res.data);
@@ -233,12 +247,51 @@ const Admin = () => {
                   api.setImg(res.data.urlfile).then(() => {
                     api.getImg().then(res => {
                       setImg(res.data);
-                      console.log(res.data);
                     });
+                    console.log(res.data);
                   });
                 });
               }}
             />
+          </div>
+        )}
+        {text == "Настройки" && (
+          <div className={styles.cont}>
+            <div>
+              <p>Телефон</p>
+              <input
+                value={settings.phone}
+                onChange={e => {
+                  setSettings({
+                    time: settings.time,
+                    phone: e.target.value,
+                  });
+                }}
+              />
+            </div>
+            <div>
+              <p>Время работы</p>
+              <input
+                value={settings.time}
+                onChange={e => {
+                  setSettings({
+                    time: e.target.value,
+                    phone: settings.phone,
+                  });
+                }}
+              />
+            </div>
+            <button
+              onClick={() => {
+                console.log();
+                api.setSettings(settings).then(res => {
+                  console.log(res.data);
+                  setSettings(res.data);
+                });
+              }}
+            >
+              Сохранить
+            </button>
           </div>
         )}
       </div>

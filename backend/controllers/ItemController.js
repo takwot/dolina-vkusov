@@ -7,9 +7,12 @@ const createItem = async (req, res) => {
     img,
     description,
     maker,
+    year,
+    energy,
     type,
     category,
     mini_category,
+    structure,
   } = req.body;
 
   const item = new Item({
@@ -17,6 +20,9 @@ const createItem = async (req, res) => {
     price,
     img,
     description,
+    year,
+    structure,
+    energy,
     maker,
     type,
     category,
