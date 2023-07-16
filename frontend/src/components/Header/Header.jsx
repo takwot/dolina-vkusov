@@ -55,11 +55,11 @@ const Header = ({ setting }) => {
             </>
           )}
         </div>
-        {/* {user.user.email == "I.maltsev95@gmail.com" && ( */}
-        <NavLink className={styles.text} to={"/admin"}>
-          Админ панель
-        </NavLink>
-        {/* )} */}
+        {user.user.email == "I.maltsev95@gmail.com" && (
+          <NavLink className={styles.text} to={"/admin"}>
+            Админ панель
+          </NavLink>
+        )}
       </div>
       <div className={styles.bottom_container}>
         <div className={styles.container}>
@@ -156,14 +156,14 @@ const Header = ({ setting }) => {
           <NavLink style={{ textDecoration: "none" }} to={"/favourites"}>
             <div className={styles.item_container}>
               <FavoriteBorderOutlinedIcon
-                sx={{ color: "#e7a173", cursor: "pointer" }}
+                sx={{ color: "#c273e7", cursor: "pointer" }}
               />
               <p>Избранное ({favourity.length})</p>
             </div>
           </NavLink>
           <NavLink style={{ textDecoration: "none" }} to={"/cart"}>
             <div className={styles.item_container}>
-              <ShoppingCartIcon sx={{ color: "#e7a173", cursor: "pointer" }} />
+              <ShoppingCartIcon sx={{ color: "#c273e7", cursor: "pointer" }} />
               <p>{cart.length}</p>
             </div>
           </NavLink>
@@ -177,7 +177,7 @@ const Header = ({ setting }) => {
           {page == 4 && <Cooking setView={setView} />}
         </div>
       )}
-      <Mobile />
+      <Mobile setting={setting} />
     </>
   );
 };

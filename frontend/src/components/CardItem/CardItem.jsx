@@ -6,18 +6,23 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setCart, setFavourity } from "../../store/reducers/userReducer";
+import api from "../../api/api";
+import { useCookies } from "react-cookie";
 
 const CardItem = ({ img, name, price, admin, id }) => {
   const [bg, setBg] = useState(false);
 
   const cart = useSelector(state => state.user.cart);
   const favourity = useSelector(state => state.user.favourity);
+  const user = useSelector(state => state.user);
+  const [cookies] = useCookies();
 
   const [like, setLike] = useState(false);
+
   const dispatch = useDispatch();
   return (
     <div className={styles.card_container}>
-      <NavLink style={{ textDecoration: "none" }} to={`/item/${id}`}>
+      {admin ? (
         <div
           className={styles.img_container}
           onClick={() => {
@@ -26,23 +31,44 @@ const CardItem = ({ img, name, price, admin, id }) => {
         >
           <img src={img} />
         </div>
-      </NavLink>
-      <div className={styles.price_container}>
+      ) : (
         <NavLink style={{ textDecoration: "none" }} to={`/item/${id}`}>
-          <div className={styles.name_container}>
-            <p>{name}</p>
+          <div
+            className={styles.img_container}
+            onClick={() => {
+              console.log(cart);
+            }}
+          >
+            <img src={img} />
           </div>
-          <p className={styles.price_text}>{price} руб</p>
         </NavLink>
+      )}
+      <div className={styles.price_container}>
+        {admin ? (
+          <>
+            {" "}
+            <div className={styles.name_container}>
+              <p>{name}</p>
+            </div>
+            <p className={styles.price_text}>{price} руб</p>
+          </>
+        ) : (
+          <NavLink style={{ textDecoration: "none" }} to={`/item/${id}`}>
+            <div className={styles.name_container}>
+              <p>{name}</p>
+            </div>
+            <p className={styles.price_text}>{price} руб</p>
+          </NavLink>
+        )}
         <div className={styles.cart_container}>
           {!admin && (
             <>
               <div
                 className={bg === true ? styles.cart_true : styles.cart}
                 onClick={() => {
-                  setBg(!bg);
-                  dispatch(
-                    setCart([
+                  if (bg == true) {
+                  } else {
+                    const newArra = [
                       ...cart,
                       {
                         img,
@@ -50,23 +76,25 @@ const CardItem = ({ img, name, price, admin, id }) => {
                         price,
                         id,
                       },
-                    ])
-                  );
+                    ];
+                    const email = cookies.email;
+                    user.isReg == true && api.setCart(email, newArra);
+
+                    dispatch(setCart(newArra));
+                  }
+                  setBg(!bg);
                 }}
               >
                 В корзин{bg === true ? "е" : "у"}
                 <ShoppingCartIcon
                   sx={{
-                    color: bg === true ? "#8bc1f4" : "white",
+                    color: bg === true ? "#9548dd" : "white",
                     cursor: "pointer",
                   }}
                 />
               </div>
               {like ? (
                 <FavoriteIcon
-                  onClick={() => {
-                    setLike(!like);
-                  }}
                   sx={{
                     color: "red",
                     cursor: "pointer",
@@ -77,16 +105,17 @@ const CardItem = ({ img, name, price, admin, id }) => {
                 <FavoriteBorderOutlinedIcon
                   onClick={() => {
                     setLike(!like);
-                    dispatch(
-                      setFavourity([
-                        ...favourity,
-                        {
-                          img,
-                          name,
-                          price,
-                        },
-                      ])
-                    );
+                    const data = [
+                      ...favourity,
+                      {
+                        img,
+                        name,
+                        price,
+                      },
+                    ];
+                    const email = cookies.email;
+                    user.isReg == true && api.setFavourity(email, data);
+                    dispatch(setFavourity(data));
                   }}
                   sx={{
                     color: "red",

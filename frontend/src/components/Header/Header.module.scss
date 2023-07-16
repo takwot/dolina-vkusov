@@ -1,7 +1,7 @@
 .top_container {
   height: 40px;
   width: 100%;
-  background-color: #e7a173;
+  background-color: #722c9b;
   display: flex;
   align-items: center;
   gap: 30px;
@@ -79,7 +79,7 @@
 }
 
 .number_text {
-  color: #98bbb7;
+  color: #9c52b3;
   font-size: 26px;
   font-weight: 600;
   letter-spacing: 0.52px;
@@ -133,7 +133,7 @@
     .arrow {
       transform: rotate(90deg);
     }
-    background-color: #98bbb7;
+    background-color: #ffd3fd;
   }
   .arrow {
     transition: 0.3s ease-in-out;
@@ -163,7 +163,7 @@
     transition: 0.3s;
   }
   &:hover {
-    color: #e7a173;
+    color: #c273e7;
   }
 }
 

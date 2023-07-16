@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "./Cart.module.scss";
 import { useDispatch, useSelector } from "react-redux";
 import CardItem from "../../components/CardItem/CardItem";
@@ -8,15 +8,23 @@ import { setCart } from "../../store/reducers/userReducer";
 const Cart = ({ setting }) => {
   const dispatch = useDispatch();
 
+  const [price, setPrice] = useState(0);
+
   const cart = useSelector(state => state.user.cart);
 
-  console.log(cart);
+  cart.map(function (el) {
+    setPrice(prev => prev + el.price);
+  });
 
   return (
     <>
       <Header setting={setting} />
       <div className={styles.container}>
         <div className={styles.main_container}>
+          <div className={styles.info_container}>
+            <p className={styles.price_text}>Товаров на {price} руб</p>
+            <p className={styles.text_order}>Оформить заказ</p>
+          </div>
           {cart.length == 0 ? (
             <p className={styles.text}>Ваша корзина пуста</p>
           ) : (

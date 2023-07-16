@@ -1,7 +1,8 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "http://62.217.180.188:4001/api/",
+  // baseURL: "http://62.217.180.188:4001/api/",
+  baseURL: "http://localhost:4001/api/",
 });
 
 const api = {
@@ -76,6 +77,15 @@ const api = {
   },
   deleteFaq(id) {
     return instance.delete("faq", { id });
+  },
+  setCart(email, cart) {
+    return instance.patch("cart", { email, cart });
+  },
+  setFavourity(email, favourity) {
+    return instance.patch("favourity", { email, favourity });
+  },
+  getAllUsers() {
+    return instance.get("all");
   },
 };
 

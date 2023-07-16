@@ -11,7 +11,7 @@ import ModalMenu from "./ModalMenu";
 import { NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
 
-const Mobile = () => {
+const Mobile = ({ setting }) => {
   const [view, setView] = useState(false);
   const cart = useSelector(state => state.user.cart);
   return (
@@ -27,18 +27,18 @@ const Mobile = () => {
             onClick={() => {
               setView(true);
             }}
-            sx={{ fontSize: 30, color: "#e7a173" }}
+            sx={{ fontSize: 30, color: "#c273e7" }}
           />
           <div>
             <NavLink to={"/favourites"}>
               <FavoriteBorderOutlinedIcon
-                sx={{ fontSize: 30, color: "#e7a173" }}
+                sx={{ fontSize: 30, color: "#c273e7" }}
               />
             </NavLink>
             <NavLink to={"/cart"}>
               <Badge badgeContent={`${cart.length}`} color="secondary">
                 <ShoppingCartOutlinedIcon
-                  sx={{ fontSize: 30, color: "#e7a173" }}
+                  sx={{ fontSize: 30, color: "#c273e7" }}
                 />
               </Badge>
             </NavLink>
@@ -46,7 +46,7 @@ const Mobile = () => {
         </div>
       </div>
       <AnimatePresence>
-        {view && <ModalMenu setView={setView} />}
+        {view && <ModalMenu setting={setting} setView={setView} />}
       </AnimatePresence>
     </>
   );

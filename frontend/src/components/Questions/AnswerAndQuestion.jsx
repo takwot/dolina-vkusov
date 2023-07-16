@@ -14,7 +14,7 @@ const AnswerAndQuestion = ({ answer, question }) => {
           setActive(!active);
         }}
         expandIcon={
-          <ExpandMoreIcon sx={{ color: active ? "#e7a173" : "black" }} />
+          <ExpandMoreIcon sx={{ color: active ? "#9548dd" : "black" }} />
         }
         aria-controls="panel1a-content"
         id="panel1a-header"
@@ -23,7 +23,7 @@ const AnswerAndQuestion = ({ answer, question }) => {
           sx={{
             fontSize: 18,
             fontWeight: 600,
-            color: active ? "#e7a173" : "black",
+            color: active ? "#9548dd" : "black",
           }}
         >
           {question}

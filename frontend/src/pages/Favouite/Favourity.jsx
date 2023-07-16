@@ -4,9 +4,13 @@ import { useDispatch, useSelector } from "react-redux";
 import CardItem from "../../components/CardItem/CardItem";
 import Header from "../../components/Header/Header";
 import { setFavourity } from "../../store/reducers/userReducer";
+import api from "../../api/api";
+import { useCookies } from "react-cookie";
 
 const Favourity = ({ setting }) => {
   const favourity = useSelector(state => state.user.favourity);
+  const user = useSelector(state => state.user);
+  const [cookies] = useCookies();
 
   const dispatch = useDispatch();
 
@@ -26,7 +30,6 @@ const Favourity = ({ setting }) => {
                     name={el.name}
                     price={el.price}
                     admin={true}
-                    id={el.id}
                   />
                   <button
                     className={styles.button}
@@ -38,6 +41,8 @@ const Favourity = ({ setting }) => {
                           newArray.push(img);
                         }
                       });
+                      const email = cookies.email;
+                      user.isReg == true && api.setFavourity(email, newArray);
                       dispatch(setFavourity(newArray));
                     }}
                   >

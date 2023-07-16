@@ -11,7 +11,7 @@ import Sweets from "./Sweets/Sweets";
 import HonnyAndSweets from "./HonnyAndSweets/HonnyAndSweets";
 import { useSelector } from "react-redux";
 
-const ModalMenu = ({ setView }) => {
+const ModalMenu = ({ setView, setting }) => {
   const [view, setViews] = useState(false);
   const user = useSelector(state => state.user);
   const [page, setPage] = useState(0);
@@ -63,11 +63,11 @@ const ModalMenu = ({ setView }) => {
       >
         <div className={styles.nav_top_container}>
           <div>
-            <p className={styles.number_text}>8 800 550-80-29</p>
-            <p>Ежедневно с 9:00 до 20:00</p>
+            <p className={styles.number_text}>{setting.phone}</p>
+            <p>{setting.time}</p>
           </div>
           <CloseIcon
-            sx={{ fontSize: 30, color: "#e7a173" }}
+            sx={{ fontSize: 30, color: "#c273e7" }}
             onClick={() => {
               setView(false);
             }}
@@ -135,7 +135,7 @@ const ModalMenu = ({ setView }) => {
             Отзывы
           </NavLink>
           <div>
-            <PersonIcon sx={{ color: "#e7a173" }} />
+            <PersonIcon sx={{ color: "#9c52b3" }} />
             {user.isReg == true ? (
               <p className={styles.text}>{user.user.name}</p>
             ) : (
