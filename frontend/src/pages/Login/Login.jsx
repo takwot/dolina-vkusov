@@ -94,7 +94,6 @@ const Login = ({ setting }) => {
               }}
             />
           </div>
-          <NavLink className={styles.link}>Забыли пароль?</NavLink>
           <button className={styles.button} onClick={clickHandle}>
             Войти
           </button>

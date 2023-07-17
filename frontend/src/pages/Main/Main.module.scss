@@ -6,11 +6,28 @@
 }
 
 .img_container {
-  width: 100%;
+  width: 70%;
   display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 70px;
+}
+
+.item {
+  width: 300px;
+  height: 170px;
+  display: flex;
+  gap: 15px;
+  color: white;
+  font-size: 19px;
+  justify-content: center;
+  background-color: #dd88ff;
+  border-radius: 25px;
   flex-direction: column;
   align-items: center;
-  margin-top: 70px;
+  p {
+    text-align: center;
+  }
 }
 
 .mobile_img {

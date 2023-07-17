@@ -43,7 +43,7 @@
 }
 
 .container {
-  width: 45%;
+  width: 65%;
   display: flex;
   margin-bottom: 20px;
   align-items: center;
@@ -185,9 +185,11 @@
 
 .cont_left {
   display: flex;
+  gap: 20px;
   align-items: center;
-  gap: 10px;
-  font-size: 18px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 19px;
   font-weight: 600;
   color: #333;
   text-decoration: none;

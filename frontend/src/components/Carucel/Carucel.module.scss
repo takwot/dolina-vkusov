@@ -16,6 +16,8 @@
   height: 100%;
   display: flex;
   flex-direction: row;
+  transition: 0.4s;
+  transition-duration: inherit;
 }
 
 .arrow {

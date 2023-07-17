@@ -1,10 +1,10 @@
 import React from "react";
 import styles from "./About.module.scss";
-import photo1 from "../../assets/first_img.png";
-import photo2 from "../../assets/second_img.png";
-import photo3 from "../../assets/third_img.png";
-import photo4 from "../../assets/fourth_img.png";
 import Header from "../../components/Header/Header";
+import LocalShippingOutlinedIcon from "@mui/icons-material/LocalShippingOutlined";
+import ThumbUpOutlinedIcon from "@mui/icons-material/ThumbUpOutlined";
+import SpaOutlinedIcon from "@mui/icons-material/SpaOutlined";
+import AppsOutlinedIcon from "@mui/icons-material/AppsOutlined";
 
 const About = ({ setting }) => {
   return (
@@ -88,10 +88,22 @@ const About = ({ setting }) => {
             </div>
           </div>
           <div className={styles.photo_container}>
-            <img src={photo1} />
-            <img src={photo2} />
-            <img src={photo3} />
-            <img src={photo4} />
+            <div className={styles.item}>
+              <AppsOutlinedIcon sx={{ fontSize: "40px" }} />
+              <p>Более 1000 товаров</p>
+            </div>
+            <div className={styles.item}>
+              <SpaOutlinedIcon sx={{ fontSize: "40px" }} />
+              <p>100% натуральный и органический продукт</p>
+            </div>
+            <div className={styles.item}>
+              <ThumbUpOutlinedIcon sx={{ fontSize: "40px" }} />
+              <p>40 проверенных брендов</p>
+            </div>
+            <div className={styles.item}>
+              <LocalShippingOutlinedIcon sx={{ fontSize: "40px" }} />
+              <p>Быстрая доставка по России</p>
+            </div>
           </div>
         </div>
       </div>

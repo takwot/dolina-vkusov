@@ -1,22 +1,25 @@
 import axios from "axios";
 
 const instance = axios.create({
-  // baseURL: "http://62.217.180.188:4001/api/",
-  baseURL: "http://localhost:4001/api/",
+  baseURL: "http://62.217.180.188:4001/api/",
 });
 
 const api = {
-  createUser(email, name, password) {
+  createUser(email, name, password, phone) {
     console.log(email, name, password);
     return instance.post("registration", {
       email: email,
       password: password,
       name: name,
+      phone: phone,
     });
+  },
+  setTimer() {
+    return instance.get(`timer`);
   },
   getItem(category, type, mini_category) {
     return instance.get(
-      `/item/category?category=${category}&type=${type}&mini_category=${mini_category}`
+      `item/category?category=${category}&type=${type}&mini_category=${mini_category}`
     );
   },
   getOneItem(id) {

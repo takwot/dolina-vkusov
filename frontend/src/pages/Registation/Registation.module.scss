@@ -20,7 +20,7 @@
 }
 
 .link {
-  color: #8ac1f4;
+  color: #ffd3fd;
   font-size: 17px;
 }
 
@@ -45,13 +45,13 @@
     outline: 0;
     height: 50px;
     &:active {
-      border: 1px solid #8ac1f4;
+      border: 1px solid #dd88ff;
     }
     &:current {
-      border: 1px solid #8ac1f4;
+      border: 1px solid #dd88ff;
     }
     &:hover {
-      border: 1px solid #8ac1f4;
+      border: 1px solid #dd88ff;
     }
   }
 }
@@ -65,7 +65,7 @@
   border-radius: 40px;
   color: #fff;
   cursor: pointer;
-  background-color: #8ac1f4;
+  background-color: #dd88ff;
   font-weight: 600;
   letter-spacing: -0.36px;
 }

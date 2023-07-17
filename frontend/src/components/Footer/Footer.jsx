@@ -6,7 +6,7 @@ import logo from "../../assets/logo.png";
 import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
 import EmailIcon from "@mui/icons-material/Email";
 
-const Footer = () => {
+const Footer = ({ setting }) => {
   return (
     <div className={styles.main_container}>
       <div className={styles.container}>
@@ -24,11 +24,11 @@ const Footer = () => {
             className={styles.phone_container}
           >
             <LocalPhoneIcon />
-            <p>8 938 355 55 98</p>
+            <p>{setting.phone}</p>
           </div>
           <div style={{ display: "flex", alignItems: "center", gap: "10px" }}>
             <EmailIcon />
-            <p>I.maltsev95@gmail.com</p>
+            <p>info@dolinavkusov.ru</p>
           </div>
         </div>
       </div>

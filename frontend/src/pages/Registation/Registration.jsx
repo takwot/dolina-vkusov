@@ -23,9 +23,10 @@ const Registration = ({ setting }) => {
 
   const [open, setOpen] = useState(false);
   const [warrning, setWarning] = useState("success");
+  const [phone, setPhone] = useState("");
 
   const clickHandle = () => {
-    api.createUser(email, name, password).then(res => {
+    api.createUser(email, name, password, phone).then(res => {
       if (res.data.message == "Error") {
         setWarning("error");
         setOpen(true);
@@ -59,9 +60,9 @@ const Registration = ({ setting }) => {
             />
             <input
               placeholder="Введите номер телефона *"
-              value={name}
+              value={phone}
               onChange={e => {
-                setName(e.target.value);
+                setPhone(e.target.value);
               }}
             />
           </div>

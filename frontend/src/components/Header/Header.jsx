@@ -63,14 +63,13 @@ const Header = ({ setting }) => {
       </div>
       <div className={styles.bottom_container}>
         <div className={styles.container}>
-          <NavLink to={"/"} style={{ textDecoration: "none" }}>
+          <NavLink to={"/"} style={{ textDecoration: "none", width: "30%" }}>
             <div className={styles.cont_left}>
               <div>
                 <img src={logo} />
               </div>
               <div>
-                <p>Деликатесы</p>
-                <p>со всего мира</p>
+                <p>Деликатесы кавказа</p>
               </div>
             </div>
           </NavLink>

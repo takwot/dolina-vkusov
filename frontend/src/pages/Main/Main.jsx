@@ -12,6 +12,10 @@ import Questions from "../../components/Questions/Questions";
 import { useSelector } from "react-redux";
 import Header from "../../components/Header/Header";
 import api from "../../api/api";
+import LocalShippingOutlinedIcon from "@mui/icons-material/LocalShippingOutlined";
+import ThumbUpOutlinedIcon from "@mui/icons-material/ThumbUpOutlined";
+import SpaOutlinedIcon from "@mui/icons-material/SpaOutlined";
+import AppsOutlinedIcon from "@mui/icons-material/AppsOutlined";
 
 const Main = ({ setting }) => {
   const [img, setImg] = useState([]);
@@ -28,17 +32,31 @@ const Main = ({ setting }) => {
     <>
       <Header setting={setting} />
       <div className={styles.main_container}>
-        <Carucel>
-          {img.map((el, index) => (
-            <img src={el} key={index} />
+        {/* <Carucel>
+          {img.map(el => (
+            <img src={el} />
           ))}
-        </Carucel>
+        </Carucel> */}
+
+        <Carucel images={img} />
+
         <div className={styles.img_container}>
-          <img src={destop_img} className={styles.des_img} />
-          <img src={first} className={styles.mobile_img} />
-          <img src={second} className={styles.mobile_img} />
-          <img src={third} className={styles.mobile_img} />
-          <img src={fouth} className={styles.mobile_img} />
+          <div className={styles.item}>
+            <AppsOutlinedIcon sx={{ fontSize: "40px" }} />
+            <p>Более 1000 товаров</p>
+          </div>
+          <div className={styles.item}>
+            <SpaOutlinedIcon sx={{ fontSize: "40px" }} />
+            <p>100% натуральный и органический продукт</p>
+          </div>
+          <div className={styles.item}>
+            <ThumbUpOutlinedIcon sx={{ fontSize: "40px" }} />
+            <p>40 проверенных брендов</p>
+          </div>
+          <div className={styles.item}>
+            <LocalShippingOutlinedIcon sx={{ fontSize: "40px" }} />
+            <p>Быстрая доставка по России</p>
+          </div>
         </div>
         <div className={styles.news_container}>
           <p

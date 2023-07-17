@@ -1,4 +1,9 @@
-let images = [];
+let images = [
+  "http://45.12.72.2:80/file?filename=1689545848748-img.jpeg",
+  "http://45.12.72.2:80/file?filename=1689545861342-img.jpeg",
+  "http://45.12.72.2:80/file?filename=1689545872520-img.jpeg",
+  "http://45.12.72.2:80/file?filename=1689545886775-img.jpeg",
+];
 
 const setImg = async (req, res) => {
   const { img } = req.body;

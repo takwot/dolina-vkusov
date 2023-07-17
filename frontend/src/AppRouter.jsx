@@ -72,7 +72,7 @@ const AppRouter = () => {
         <Route element={<Raiting setting={setting} />} path="/raiting" />
         <Route element={<Item setting={setting} />} path="/item/:id" />
       </Routes>
-      <Footer />
+      <Footer setting={setting} />
     </BrowserRouter>
   );
 };
