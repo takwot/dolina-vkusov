@@ -4,25 +4,52 @@ let images = [
   "http://45.12.72.2:80/file?filename=1689545872520-img.jpeg",
   "http://45.12.72.2:80/file?filename=1689545886775-img.jpeg",
 ];
+const Carucel = require("../model/Carucel");
 
 const setImg = async (req, res) => {
   const { img } = req.body;
 
-  images.push(img);
+  const data = await Carucel.findOne();
 
-  res.json(images);
+  const images = await Carucel.findOneAndUpdate(
+    { _id: data._id },
+    { img: [...data.img, img] },
+    { new: true }
+  );
+
+  res.json(images.img);
 };
 
 const getImg = async (req, res) => {
-  res.json(images);
+  const data = await Carucel.findOne();
+  res.json(data.img);
 };
 
 const changeImg = async (req, res) => {
   const { id, img } = req.body;
 
-  images[id] = img;
+  const images = await Carucel.findOne();
 
-  res.json(images);
+  // images[id] = img;
+
+  let newArr = [];
+
+  images.img.map(function (el, index) {
+    if (index == id) {
+      newArr.push(img);
+    }
+    newArr.push(el);
+  });
+
+  const data = await Carucel.findOneAndUpdate(
+    { _id: images._id },
+    {
+      img: newArr,
+    },
+    { new: true }
+  );
+
+  res.json(data.img);
 };
 
 const deleteImg = async (req, res) => {
@@ -32,7 +59,9 @@ const deleteImg = async (req, res) => {
 
   let newArr = [];
 
-  images.map(function (el) {
+  const images = await Carucel.findOne();
+
+  images.img.map(function (el) {
     if (el !== id) {
       newArr.push(el);
     }
@@ -40,11 +69,31 @@ const deleteImg = async (req, res) => {
 
   console.log(newArr);
 
-  images = newArr;
+  const data = await Carucel.findOneAndUpdate(
+    { _id: images._id },
+    {
+      img: newArr,
+    },
+    { new: true }
+  );
 
-  console.log(images);
+  res.json(data.img);
+};
 
-  res.json(images);
+const createCarucel = async (req, res) => {
+  const data = await Carucel.find();
+
+  if (data.length == 0) {
+    const newCarucel = new Carucel({
+      img: images,
+    });
+
+    newCarucel.save();
+
+    res.json(newCarucel.img);
+  } else {
+    res.json("Error");
+  }
 };
 
 module.exports = {
@@ -52,4 +101,5 @@ module.exports = {
   getImg,
   changeImg,
   deleteImg,
+  createCarucel,
 };

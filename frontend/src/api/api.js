@@ -14,9 +14,6 @@ const api = {
       phone: phone,
     });
   },
-  setTimer() {
-    return instance.get(`timer`);
-  },
   getItem(category, type, mini_category) {
     return instance.get(
       `item/category?category=${category}&type=${type}&mini_category=${mini_category}`

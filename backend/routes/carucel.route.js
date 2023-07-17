@@ -8,5 +8,6 @@ router.get("/carucel", CarucelController.getImg);
 router.patch("/carucel", CarucelController.changeImg);
 router.post("/carucel", CarucelController.setImg);
 router.delete("/carucel", CarucelController.deleteImg);
+router.post("/carucel/new", CarucelController.createCarucel);
 
 module.exports = router;

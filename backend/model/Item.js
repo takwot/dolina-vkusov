@@ -1,17 +1,17 @@
 const { Schema, model } = require("mongoose");
 
 const Item = new Schema({
-  name: { type: String, required: true },
-  img: { type: String, required: true },
-  price: { type: String, required: true },
-  year: { type: String, required: true },
-  energy: { type: String, required: true },
-  description: { type: String, required: true },
-  maker: { type: String, required: true },
+  name: { type: String, default: "" },
+  img: { type: String, default: "" },
+  price: { type: String, default: "" },
+  year: { type: String, default: "" },
+  energy: { type: String, default: "" },
+  description: { type: String, default: "" },
+  maker: { type: String, default: "" },
   type: { type: String, default: "" },
   category: { type: String, default: "" },
   mini_category: { type: String, default: "" },
-  structure: { type: String, required: true },
+  structure: { type: String, default: "" },
 });
 
 module.exports = model("Item", Item);
