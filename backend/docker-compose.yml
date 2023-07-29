@@ -9,8 +9,3 @@ services:
       - "4001:4001"
     volumes:
       - .:/app
-  database:
-    container_name: database
-    image: mongo
-    ports:
-      - "27017:27017"
