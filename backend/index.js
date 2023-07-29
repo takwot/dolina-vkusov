@@ -3,7 +3,7 @@ const cors = require("cors");
 const mongoose = require("mongoose");
 
 mongoose
-  .connect("mongodb://database:27017/store", {
+  .connect("mongodb://45.90.32.77:27017/store", {
     useNewUrlParser: true,
   })
   .then(() => console.log("MongoDB Connected"))
