@@ -1,8 +1,8 @@
 version: "3.8"
 
 services:
-  backend-yachts:
-    container_name: backend-yacht
+  yachts:
+    container_name: yachts
     restart: always
     build: ./
     ports:
