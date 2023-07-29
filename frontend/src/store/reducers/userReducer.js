@@ -21,7 +21,6 @@ export function userReducer(state = defaultState, action) {
       };
     }
     case SET_CART: {
-      console.log(action.payload);
       return {
         ...state,
         cart: action.payload,

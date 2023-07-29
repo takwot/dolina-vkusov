@@ -23,7 +23,6 @@ const Main = ({ setting }) => {
   useEffect(() => {
     api.getCarucelImg().then(res => {
       setImg(res.data);
-      console.log(res.data);
     });
   }, []);
 
@@ -54,13 +53,7 @@ const Main = ({ setting }) => {
         </div>
         <div className={styles.news_container}>
           <p className={styles.text}>Лидеры продаж</p>
-          <div className={styles.item_container}>
-            Тут пока ничего нет
-            {/* <CardItem />
-          <CardItem />
-          <CardItem />
-          <CardItem /> */}
-          </div>
+          <div className={styles.item_container}>Тут пока ничего нет</div>
         </div>
         <Questions />
       </div>

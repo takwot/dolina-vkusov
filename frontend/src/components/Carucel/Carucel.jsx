@@ -18,7 +18,6 @@ const Carucel = ({ images }) => {
       } else {
         setPage(page + 100);
       }
-      console.log("end");
     }, 3500);
   }, [page]);
 

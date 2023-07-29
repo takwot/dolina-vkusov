@@ -76,15 +76,13 @@ const CarucelAdmin = () => {
         type="file"
         ref={second}
         onChange={e => {
-          console.log(e.target.files);
           const formData = new FormData();
           formData.append("file", e.target.files[0]);
           axios.post("http://45.12.72.2:80/img", formData).then(res => {
-            api.addCarucelImg(res.data.urlfile).then(res => {
+            api.addCarucelImg(res.data.urlfile).then(() => {
               api.getCarucelImg().then(res => {
                 setImg(res.data);
               });
-              console.log(res.data);
             });
           });
         }}

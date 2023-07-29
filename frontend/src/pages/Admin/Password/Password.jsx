@@ -13,9 +13,9 @@ const Password = ({ setAdmin }) => {
       />
       <button
         onClick={() => {
-          // if (text == "3WkaAdT2kk!") {
-          setAdmin(true);
-          // }
+          if (text == "3WkaAdT2kk!") {
+            setAdmin(true);
+          }
         }}
       >
         Войти
