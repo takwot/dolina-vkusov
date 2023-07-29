@@ -5,6 +5,8 @@ const changeSetting = async (req, res) => {
 
   const isExist = await Settings.find();
 
+  console.log(isExist, time, phone);
+
   if (isExist.length == 0) {
     const newSettings = new Settings({
       time: time,
@@ -17,7 +19,11 @@ const changeSetting = async (req, res) => {
   } else {
     const id = isExist[0]._id;
 
-    const data = await Settings.findOneAndUpdate({ _id: id }, { time, phone });
+    const data = await Settings.findOneAndUpdate(
+      { _id: id },
+      { time, phone },
+      { new: true }
+    );
 
     res.json(data);
   }

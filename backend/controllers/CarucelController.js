@@ -1,105 +1,39 @@
-let images = [
-  "http://45.12.72.2:80/file?filename=1689545848748-img.jpeg",
-  "http://45.12.72.2:80/file?filename=1689545861342-img.jpeg",
-  "http://45.12.72.2:80/file?filename=1689545872520-img.jpeg",
-  "http://45.12.72.2:80/file?filename=1689545886775-img.jpeg",
-];
 const Carucel = require("../model/Carucel");
 
-const setImg = async (req, res) => {
-  const { img } = req.body;
+const addImg = async (req, res) => {
+  const newImg = new Carucel({ img: req.body.img });
 
-  const data = await Carucel.findOne();
-
-  const images = await Carucel.findOneAndUpdate(
-    { _id: data._id },
-    { img: [...data.img, img] },
-    { new: true }
-  );
-
-  res.json(images.img);
+  newImg.save().then(() => {
+    res.status(200).json({ status: true, newImg });
+  });
 };
 
 const getImg = async (req, res) => {
-  const data = await Carucel.findOne();
-  res.json(data.img);
-};
+  const imgs = await Carucel.find();
 
-const changeImg = async (req, res) => {
-  const { id, img } = req.body;
-
-  const images = await Carucel.findOne();
-
-  // images[id] = img;
-
-  let newArr = [];
-
-  images.img.map(function (el, index) {
-    if (index == id) {
-      newArr.push(img);
-    }
-    newArr.push(el);
-  });
-
-  const data = await Carucel.findOneAndUpdate(
-    { _id: images._id },
-    {
-      img: newArr,
-    },
-    { new: true }
-  );
-
-  res.json(data.img);
+  res.json(imgs);
 };
 
 const deleteImg = async (req, res) => {
   const { id } = req.query;
 
-  console.log(id);
+  await Carucel.findByIdAndDelete(id);
 
-  let newArr = [];
-
-  const images = await Carucel.findOne();
-
-  images.img.map(function (el) {
-    if (el !== id) {
-      newArr.push(el);
-    }
-  });
-
-  console.log(newArr);
-
-  const data = await Carucel.findOneAndUpdate(
-    { _id: images._id },
-    {
-      img: newArr,
-    },
-    { new: true }
-  );
-
-  res.json(data.img);
+  res.json({ status: true });
 };
 
-const createCarucel = async (req, res) => {
-  const data = await Carucel.find();
+const updateImage = async (req, res) => {
+  const { img } = req.body;
+  const { id } = req.query;
 
-  if (data.length == 0) {
-    const newCarucel = new Carucel({
-      img: images,
-    });
-
-    newCarucel.save();
-
-    res.json(newCarucel.img);
-  } else {
-    res.json("Error");
-  }
+  Carucel.findOneAndUpdate({ _id: id }, { img: img }).then(() => {
+    res.status(200).json({ status: true });
+  });
 };
 
 module.exports = {
-  setImg,
+  addImg,
   getImg,
-  changeImg,
   deleteImg,
-  createCarucel,
+  updateImage,
 };

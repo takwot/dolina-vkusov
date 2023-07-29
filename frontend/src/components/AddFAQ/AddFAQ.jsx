@@ -39,7 +39,7 @@ const AddFAQ = ({ setModal, setCart }) => {
         <button
           onClick={() => {
             api.addFaq(answer, question).then(() => {
-              api.allItem().then(res => {
+              api.allFaq().then(res => {
                 setCart(res.data);
               });
             });

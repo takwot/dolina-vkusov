@@ -33,7 +33,7 @@ const Cooking = ({ setting }) => {
             : data.map(function (el) {
                 return (
                   <CardItem
-                    img={el.img[0]}
+                    img={el.img}
                     key={el.id}
                     name={el.name}
                     price={el.price}

@@ -5,9 +5,8 @@ const CarucelController = require("../controllers/CarucelController");
 const router = Router();
 
 router.get("/carucel", CarucelController.getImg);
-router.patch("/carucel", CarucelController.changeImg);
-router.post("/carucel", CarucelController.setImg);
+router.post("/carucel", CarucelController.addImg);
 router.delete("/carucel", CarucelController.deleteImg);
-router.post("/carucel/new", CarucelController.createCarucel);
+router.patch("/carucel", CarucelController.updateImage);
 
 module.exports = router;

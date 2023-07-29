@@ -106,41 +106,6 @@
   border-bottom: 1px solid rgba(181, 202, 203, 0.5);
 }
 
-.nav {
-  cursor: pointer;
-  width: 15%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: 0.3s ease-out;
-  transition-duration: 0.3s;
-  transition-timing-function: ease-out;
-  transition-delay: 0s;
-  transition-property: all;
-  padding-top: 15px;
-  gap: 7px;
-  padding-bottom: 15px;
-  border-left: 1px solid rgba(181, 202, 203, 0.5);
-  border-right: 1px solid rgba(181, 202, 203, 0.5);
-  .link {
-    letter-spacing: 0.32px;
-    text-decoration: none;
-    color: black;
-    font-size: 19px;
-    font-weight: 400;
-  }
-  &:hover {
-    .arrow {
-      transform: rotate(90deg);
-    }
-    background-color: #ffd3fd;
-  }
-  .arrow {
-    transition: 0.3s ease-in-out;
-    transform: rotate(-90deg);
-  }
-}
-
 .cart_container {
   display: flex;
   align-items: center;

@@ -1,0 +1,23 @@
+.button_item {
+  width: 100%;
+  cursor: pointer;
+  height: 35px;
+  color: white;
+  background-color: #8ac1f4;
+  border: none;
+  border-radius: 35px;
+  font-size: 16px;
+}
+
+.iamge {
+  display: flex;
+  flex-direction: column;
+  button {
+    height: 30px;
+    background-color: #8ac1f4;
+    color: white;
+    border: none;
+    border-radius: 35px;
+    margin-top: 7px;
+  }
+}

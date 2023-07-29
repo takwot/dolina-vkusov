@@ -2,9 +2,9 @@
   position: fixed;
   width: 100vw;
   height: 100vh;
-  margin-left: -5%;
-  margin-top: -65px;
   overflow: hidden;
+  top: 0;
+  left: 0;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -15,7 +15,8 @@
 .main_container {
   width: 60%;
   cursor: default;
-  height: 800px;
+  height: 700px;
+  overflow: auto;
   border-radius: 15px;
   background-color: white;
   display: flex;

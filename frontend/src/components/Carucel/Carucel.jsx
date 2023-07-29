@@ -9,45 +9,17 @@ const PAGE_WIDTH = 1300;
 const Carucel = ({ images }) => {
   const [page, setPage] = useState(0);
 
-  const [numberOfPage, setNumberOfPage] = useState(0);
-
-  const [first, setFirst] = useState(true);
-
   const screenWidth = window.screen.width;
 
   useEffect(() => {
     setTimeout(() => {
-      console.log(images.length);
-      if (screenWidth > 1000) {
-        if (first == true) {
-          setPage(page - 1300);
-          setFirst(false);
-        } else {
-          if (numberOfPage < images.length - 1) {
-            setPage(page - 1300);
-            setNumberOfPage(numberOfPage + 1);
-          }
-          if (numberOfPage == images.length - 1) {
-            setPage(0);
-            setNumberOfPage(0);
-          }
-        }
+      if (page === (images.length - 1) * 100) {
+        setPage(0);
       } else {
-        if (first == true) {
-          setPage(page - 350);
-          setFirst(false);
-        } else {
-          if (numberOfPage < images.length - 1) {
-            setPage(page - 350);
-            setNumberOfPage(numberOfPage + 1);
-          }
-          if (numberOfPage == images.length - 1) {
-            setPage(0);
-            setNumberOfPage(0);
-          }
-        }
+        setPage(page + 100);
       }
-    }, 5000);
+      console.log("end");
+    }, 3500);
   }, [page]);
 
   return (
@@ -55,17 +27,19 @@ const Carucel = ({ images }) => {
       <div className={styles.window}>
         <div
           className={styles.all_pages}
-          style={{ transform: `translateX(${page}px)` }}
+          style={{
+            transform: `translateX(-${page}%)`,
+          }}
         >
-          {images.map(el => (
+          {images.map((el, index) => (
             <img
-              src={el}
+              src={el.img}
               onClick={() => {}}
-              key={el}
+              key={el._id}
               style={{
                 height: "100%",
-                minWidth: screenWidth > 1000 ? `${PAGE_WIDTH}px` : `350px`,
-                maxWidth: screenWidth > 1000 ? `${PAGE_WIDTH}px` : `350px`,
+                minWidth: "100%",
+                maxWidth: "100%",
               }}
             />
           ))}

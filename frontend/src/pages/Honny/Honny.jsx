@@ -13,7 +13,7 @@ const Honny = ({ setting }) => {
   const url = useLocation();
 
   useEffect(() => {
-    const type = "Дары природы";
+    const type = "Мед и сладости";
     if (url.search == "") {
       api.getItemWithOutAll(type).then(res => {
         setData(res.data);
@@ -40,7 +40,7 @@ const Honny = ({ setting }) => {
             : data.map(function (el) {
                 return (
                   <CardItem
-                    img={el.img[0]}
+                    img={el.img}
                     key={el.id}
                     name={el.name}
                     price={el.price}

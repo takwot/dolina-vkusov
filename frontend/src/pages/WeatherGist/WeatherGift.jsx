@@ -31,9 +31,10 @@ const WeatherGift = ({ setting }) => {
           {data.length == 0
             ? "Ничего не найдено"
             : data.map(function (el) {
+                console.log(el);
                 return (
                   <CardItem
-                    img={el.img[0]}
+                    img={el.img}
                     key={el.id}
                     name={el.name}
                     price={el.price}

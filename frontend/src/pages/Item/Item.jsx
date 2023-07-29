@@ -3,7 +3,6 @@ import styles from "./Item.module.scss";
 import Header from "../../components/Header/Header";
 import { useParams } from "react-router-dom";
 import api from "../../api/api";
-import Carucel from "./Carucel/Carucel";
 
 const Item = ({ setting }) => {
   const { id } = useParams();

@@ -36,11 +36,13 @@ const AppRouter = () => {
       setSetting({ time: res.data.time, phone: res.data.phone });
     });
     api.loginUser(email, password).then(res => {
+      const cart = localStorage.getItem("cart");
+      const favourity = localStorage.getItem("favourity");
+      dispatch(setFavourity(JSON.parse(favourity)));
+      dispatch(setCart(JSON.parse(cart)));
       if (res.data.message == "Error") {
       } else {
         dispatch(setUser(res.data));
-        dispatch(setCart(res.data.cart));
-        dispatch(setFavourity(res.data.favourite));
       }
     });
   }, []);
@@ -68,7 +70,7 @@ const AppRouter = () => {
         <Route element={<Honny setting={setting} />} path="/honny" />
         <Route element={<Cooking setting={setting} />} path="/cooking" />
         <Route element={<Navigate to={"/"} />} path="*" />
-        <Route element={<Admin />} path="/admin" />
+        <Route element={<Admin />} path="/admin/*" />
         <Route element={<Raiting setting={setting} />} path="/raiting" />
         <Route element={<Item setting={setting} />} path="/item/:id" />
       </Routes>

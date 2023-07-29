@@ -9,7 +9,7 @@ import Sweet from "./Sweet";
 import axios from "axios";
 import api from "../../api/api";
 
-const AddItemModal = ({ setModal }) => {
+const AddItemModal = ({ setModal, setCart }) => {
   const ref = useRef();
 
   const [name, setName] = useState("");
@@ -40,8 +40,10 @@ const AddItemModal = ({ setModal }) => {
       mini_category: miniType,
     };
     api.createItem(data).then(res => {
-      console.log(res.data);
       alert("Успешно!");
+      api.allItem().then(res => {
+        setCart(res.data);
+      });
       setModal(false);
     });
   };
@@ -72,6 +74,11 @@ const AddItemModal = ({ setModal }) => {
             });
           }}
         />
+        <div style={{}}>
+          {photo && (
+            <img style={{ width: "200px", height: "200px" }} src={file} />
+          )}
+        </div>
         <div className={styles.input_container}>
           <p>Название товара</p>
           <input

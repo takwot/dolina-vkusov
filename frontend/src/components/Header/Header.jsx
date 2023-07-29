@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import styles from "./Header.module.scss";
 import PermIdentityOutlinedIcon from "@mui/icons-material/PermIdentityOutlined";
 import { NavLink } from "react-router-dom";
-import ArrowBackIosNewOutlinedIcon from "@mui/icons-material/ArrowBackIosNewOutlined";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import Production from "./Production/Production";
@@ -12,12 +11,14 @@ import logo from "../../assets/logo.png";
 import Cooking from "./Cooking/Cooking";
 import Mobile from "./Mobile/Mobile";
 import { useSelector } from "react-redux";
-import api from "../../api/api";
+import SearchIcon from "@mui/icons-material/Search";
+import HeaderNav from "../HeaderNav/HeaderNav";
+import Input from "../Input/Input";
 
 const Header = ({ setting }) => {
   const [view, setView] = useState(false);
   const [page, setPage] = useState(0);
-  const [showInput, setShowInput] = useState();
+  const [showInput, setShowInput] = useState(false);
 
   const user = useSelector(state => state.user);
   const cart = useSelector(state => state.user.cart);
@@ -56,7 +57,7 @@ const Header = ({ setting }) => {
           )}
         </div>
         {user.user.email == "I.maltsev95@gmail.com" && (
-          <NavLink className={styles.text} to={"/admin"}>
+          <NavLink className={styles.text} to={"/admin/main"}>
             Админ панель
           </NavLink>
         )}
@@ -82,76 +83,18 @@ const Header = ({ setting }) => {
         </div>
       </div>
       <div className={styles.navigation_container}>
-        <div
-          className={styles.nav}
-          onMouseEnter={() => {
-            setView(true);
-            setPage(1);
-          }}
-          onMouseLeave={() => {
-            setView(false);
-          }}
-        >
-          <NavLink className={styles.link} to={"/weather-gift"}>
-            <p>Дары природы</p>
-          </NavLink>
-          <div className={styles.arrow}>
-            <ArrowBackIosNewOutlinedIcon sx={{ fontSize: "18px" }} />
-          </div>
-        </div>
-        <div
-          className={styles.nav}
-          onMouseEnter={() => {
-            setView(true);
-            setPage(2);
-          }}
-          onMouseLeave={() => {
-            setView(false);
-          }}
-        >
-          <NavLink className={styles.link} to={"/sweets"}>
-            <p>Конфеты</p>
-          </NavLink>
-          <div className={styles.arrow}>
-            <ArrowBackIosNewOutlinedIcon sx={{ fontSize: "18px" }} />
-          </div>
-        </div>
-        <div
-          className={styles.nav}
-          onMouseEnter={() => {
-            setView(true);
-            setPage(3);
-          }}
-          onMouseLeave={() => {
-            setView(false);
-          }}
-        >
-          <NavLink className={styles.link} to={"/honny"}>
-            <p>Мед и сладости</p>
-          </NavLink>
-          <div className={styles.arrow}>
-            <ArrowBackIosNewOutlinedIcon sx={{ fontSize: "18px" }} />
-          </div>
-        </div>
-        <div
-          className={styles.nav}
-          onMouseEnter={() => {
-            setView(true);
-            setPage(4);
-          }}
-          onMouseLeave={() => {
-            setView(false);
-          }}
-        >
-          <NavLink className={styles.link} to={"/cooking"}>
-            <p>Кулинария</p>
-          </NavLink>
-          <div className={styles.arrow}>
-            <ArrowBackIosNewOutlinedIcon sx={{ fontSize: "18px" }} />
-          </div>
-        </div>
-
+        {showInput ? (
+          <Input />
+        ) : (
+          <HeaderNav setPage={setPage} setView={setView} />
+        )}
         <div className={styles.cart_container}>
+          <SearchIcon
+            onClick={() => {
+              setShowInput(!showInput);
+            }}
+            sx={{ color: "#c273e7", cursor: "pointer", fontSize: 25 }}
+          />
           <NavLink style={{ textDecoration: "none" }} to={"/favourites"}>
             <div className={styles.item_container}>
               <FavoriteBorderOutlinedIcon

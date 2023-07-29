@@ -1,0 +1,29 @@
+.button_text {
+  margin-top: 40px;
+  height: 40px;
+  width: 200px;
+  border: none;
+  background-color: #8ac1f4;
+  color: white;
+  font-size: 17px;
+  z-index: 10;
+  border-radius: 40px;
+  cursor: pointer;
+}
+.all_items {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 50px;
+}
+
+.button_item {
+  width: 100%;
+  cursor: pointer;
+  height: 35px;
+  color: white;
+  background-color: #8ac1f4;
+  border: none;
+  border-radius: 35px;
+  font-size: 16px;
+}

@@ -21,7 +21,7 @@ const Main = ({ setting }) => {
   const [img, setImg] = useState([]);
 
   useEffect(() => {
-    api.getImg().then(res => {
+    api.getCarucelImg().then(res => {
       setImg(res.data);
       console.log(res.data);
     });
@@ -32,12 +32,6 @@ const Main = ({ setting }) => {
     <>
       <Header setting={setting} />
       <div className={styles.main_container}>
-        {/* <Carucel>
-          {img.map(el => (
-            <img src={el} />
-          ))}
-        </Carucel> */}
-
         <Carucel images={img} />
 
         <div className={styles.img_container}>
@@ -59,14 +53,7 @@ const Main = ({ setting }) => {
           </div>
         </div>
         <div className={styles.news_container}>
-          <p
-            className={styles.text}
-            onClick={() => {
-              console.log(user);
-            }}
-          >
-            Лидеры продаж
-          </p>
+          <p className={styles.text}>Лидеры продаж</p>
           <div className={styles.item_container}>
             Тут пока ничего нет
             {/* <CardItem />

@@ -9,6 +9,7 @@ import { useLocation } from "react-router-dom";
 const Sweets = ({ setting }) => {
   const [data, setData] = useState([]);
   const path = useSelector(state => state.path.type);
+  const cart = useSelector(state => state.user.cart);
   const url = useLocation();
 
   useEffect(() => {
@@ -40,9 +41,6 @@ const Sweets = ({ setting }) => {
                 return (
                   <CardItem
                     img={el.img}
-                    // img={
-                    //   "http://localhost:80/file?filename=1689343074269-img.png"
-                    // }
                     key={el.id}
                     name={el.name}
                     price={el.price}

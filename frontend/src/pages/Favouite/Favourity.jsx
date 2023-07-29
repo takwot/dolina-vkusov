@@ -41,8 +41,10 @@ const Favourity = ({ setting }) => {
                           newArray.push(img);
                         }
                       });
-                      const email = cookies.email;
-                      user.isReg == true && api.setFavourity(email, newArray);
+                      localStorage.setItem(
+                        "favourity",
+                        JSON.stringify(newArray)
+                      );
                       dispatch(setFavourity(newArray));
                     }}
                   >

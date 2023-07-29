@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./CardItem.module.scss";
 import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
 import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
@@ -9,15 +9,19 @@ import { setCart, setFavourity } from "../../store/reducers/userReducer";
 import api from "../../api/api";
 import { useCookies } from "react-cookie";
 
-const CardItem = ({ img, name, price, admin, id }) => {
+const CardItem = ({ img, name, price, admin, id, incart }) => {
   const [bg, setBg] = useState(false);
 
   const cart = useSelector(state => state.user.cart);
   const favourity = useSelector(state => state.user.favourity);
-  const user = useSelector(state => state.user);
   const [cookies] = useCookies();
 
   const [like, setLike] = useState(false);
+
+  useEffect(() => {
+    cart.find(item => item.id === id) ? setBg(true) : setBg(false);
+    favourity.find(item => item.id === id) ? setLike(true) : setLike(false);
+  }, []);
 
   const dispatch = useDispatch();
   return (
@@ -63,10 +67,13 @@ const CardItem = ({ img, name, price, admin, id }) => {
         <div className={styles.cart_container}>
           {!admin && (
             <>
-              <div
+              <button
                 className={bg === true ? styles.cart_true : styles.cart}
                 onClick={() => {
                   if (bg == true) {
+                    const newArr = cart.filter(el => el.id !== id);
+                    dispatch(setCart(newArr));
+                    localStorage.setItem("cart", JSON.stringify(newArr));
                   } else {
                     const newArra = [
                       ...cart,
@@ -75,12 +82,11 @@ const CardItem = ({ img, name, price, admin, id }) => {
                         name,
                         price,
                         id,
+                        count: 1,
                       },
                     ];
-                    const email = cookies.email;
-                    user.isReg == true && api.setCart(email, newArra);
-
                     dispatch(setCart(newArra));
+                    localStorage.setItem("cart", JSON.stringify(newArra));
                   }
                   setBg(!bg);
                 }}
@@ -92,13 +98,20 @@ const CardItem = ({ img, name, price, admin, id }) => {
                     cursor: "pointer",
                   }}
                 />
-              </div>
+              </button>
               {like ? (
                 <FavoriteIcon
                   sx={{
                     color: "red",
                     cursor: "pointer",
                     fontSize: "25px",
+                  }}
+                  onClick={() => {
+                    setLike(!like);
+                    const data = favourity.filter(el => el.id !== id);
+                    console.log(data);
+                    dispatch(setFavourity(data));
+                    localStorage.setItem("favourity", JSON.stringify(data));
                   }}
                 />
               ) : (
@@ -110,12 +123,13 @@ const CardItem = ({ img, name, price, admin, id }) => {
                       {
                         img,
                         name,
+                        id,
                         price,
                       },
                     ];
                     const email = cookies.email;
-                    user.isReg == true && api.setFavourity(email, data);
                     dispatch(setFavourity(data));
+                    localStorage.setItem("favourity", JSON.stringify(data));
                   }}
                   sx={{
                     color: "red",

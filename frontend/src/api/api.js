@@ -50,19 +50,6 @@ const api = {
     console.log(data.img[0]);
     return instance.post("item", data);
   },
-  getImg() {
-    return instance.get("carucel");
-  },
-  setImg(img) {
-    return instance.post("carucel", { img });
-  },
-  addImg(img, id) {
-    return instance.patch("carucel", { img, id });
-  },
-  deleteImg(id) {
-    console.log(id);
-    return instance.delete(`carucel?id=${id}`);
-  },
   allItem() {
     return instance.get("item");
   },
@@ -86,6 +73,18 @@ const api = {
   },
   getAllUsers() {
     return instance.get("all");
+  },
+  getCarucelImg() {
+    return instance.get("carucel");
+  },
+  deleteCarucelImg(id) {
+    return instance.delete(`carucel?id=${id}`);
+  },
+  addCarucelImg(img) {
+    return instance.post("carucel", { img: img });
+  },
+  updateCarucelImg(id, img) {
+    return instance.patch(`carucel?id=${id}`, { img: img });
   },
 };
 
