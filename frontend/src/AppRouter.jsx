@@ -32,13 +32,16 @@ const AppRouter = () => {
   const email = cookies.email;
   const password = cookies.password;
   useEffect(() => {
-    const cart = localStorage.getItem("cart");
-    const favourity = localStorage.getItem("favourity");
-    if (favourity !== null) {
-      dispatch(setFavourity(JSON.parse(favourity)));
-    }
-    if (cart !== null) {
+    const first = localStorage.getItem("time");
+    if (first === null) {
+      localStorage.setItem("time", "yyyes");
+      localStorage.setItem("cart", JSON.stringify([]));
+      localStorage.setItem("favourity", JSON.stringify([]));
+    } else {
+      const cart = localStorage.getItem("cart");
+      const favourity = localStorage.getItem("favourity");
       dispatch(setCart(JSON.parse(cart)));
+      dispatch(setFavourity(JSON.parse(favourity)));
     }
     api.getSettings().then(res => {
       setSetting({ time: res.data.time, phone: res.data.phone });
