@@ -53,20 +53,19 @@ const CardItemCart = ({ img, name, price, id, count }) => {
               cart.map(el => {
                 if (el.id !== id) {
                   newArr.push(el);
+                } else {
+                  newArr.push({
+                    img,
+                    name,
+                    price,
+                    id,
+                    count: counter + 1,
+                  });
                 }
               });
-              const array = [
-                ...newArr,
-                {
-                  img,
-                  name,
-                  price,
-                  id,
-                  count: counter - 1,
-                },
-              ];
-              dispatch(setCart(array));
-              localStorage.setItem("cart", JSON.stringify(array));
+
+              dispatch(setCart(newArr));
+              localStorage.setItem("cart", JSON.stringify(newArr));
               setCounter(counter - 1);
             }
           }}
@@ -80,20 +79,19 @@ const CardItemCart = ({ img, name, price, id, count }) => {
             cart.map(el => {
               if (el.id !== id) {
                 newArr.push(el);
+              } else {
+                newArr.push({
+                  img,
+                  name,
+                  price,
+                  id,
+                  count: counter + 1,
+                });
               }
             });
-            const array = [
-              ...newArr,
-              {
-                img,
-                name,
-                price,
-                id,
-                count: counter + 1,
-              },
-            ];
-            dispatch(setCart(array));
-            localStorage.setItem("cart", JSON.stringify(array));
+
+            dispatch(setCart(newArr));
+            localStorage.setItem("cart", JSON.stringify(newArr));
             setCounter(counter + 1);
           }}
         >
