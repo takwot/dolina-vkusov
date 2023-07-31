@@ -1,15 +1,18 @@
-import React from "react";
+import React, { useEffect } from "react";
 
-const HonnyAndSweets = () => {
+const HonnyAndSweets = ({ setCategory, change }) => {
+  useEffect(() => {
+    change && setCategory("Мед");
+  }, []);
   return (
     <>
-      <option>Мед</option>
-      <option>Продукция пчеловодства</option>
-      <option>Восточные сладости</option>
-      <option>Варенье</option>
-      <option>Конфитюр</option>
-      <option>Продукция для диабетиков</option>
-      <option>Урбеч</option>
+      <option value="Мед">Мед</option>
+      <option value="Продукция пчеловодства">Продукция пчеловодства</option>
+      <option value="Восточные сладости">Восточные сладости</option>
+      <option value="Варенье">Варенье</option>
+      <option value="Конфитюр">Конфитюр</option>
+      <option value="Продукция для диабетиков">Продукция для диабетиков</option>
+      <option value="Урбеч">Урбеч</option>
     </>
   );
 };

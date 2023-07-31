@@ -45,6 +45,7 @@ const AppRouter = () => {
     }
     api.getSettings().then(res => {
       setSetting({ time: res.data.time, phone: res.data.phone });
+      console.log(res.data);
     });
     api.loginUser(email, password).then(res => {
       if (res.data.message == "Error") {

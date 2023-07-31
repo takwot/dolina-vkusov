@@ -63,7 +63,11 @@ const CarucelAdmin = () => {
                   const formData = new FormData();
                   formData.append("file", e.target.files[0]);
                   axios.post("http://45.12.72.2:80/img", formData).then(res => {
-                    api.updateCarucelImg(el._id, res.data.urlfile);
+                    api.updateCarucelImg(el._id, res.data.urlfile).then(() => {
+                      api.getCarucelImg().then(res => {
+                        setImg(res.data);
+                      });
+                    });
                   });
                 }}
               />

@@ -7,6 +7,8 @@ import AddItemModal from "../AddItemModal/AddItemModal";
 const Items = () => {
   const [cart, setCart] = useState([]);
   const [modal, setModal] = useState(false);
+  const [change, setChange] = useState(false);
+  const [id, setId] = useState("");
 
   useEffect(() => {
     api.allItem().then(res => {
@@ -16,7 +18,15 @@ const Items = () => {
 
   return (
     <div className={styles.item_cnbonae}>
-      {modal && <AddItemModal setModal={setModal} setCart={setCart} />}
+      {modal && (
+        <AddItemModal
+          setModal={setModal}
+          setCart={setCart}
+          change={change}
+          setChange={setChange}
+          id={id}
+        />
+      )}
       <button
         className={styles.button_text}
         onClick={() => {
@@ -38,6 +48,17 @@ const Items = () => {
               />
               <button
                 className={styles.button_item}
+                onClick={() => {
+                  setModal(true);
+                  setChange(true);
+                  setId(el._id);
+                }}
+              >
+                Изменить
+              </button>
+              <button
+                className={styles.button_item}
+                style={{ marginTop: "10px" }}
                 onClick={() => {
                   const id = el._id;
                   api.deleteItem(id).then(() => {

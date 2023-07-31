@@ -9,7 +9,7 @@ import Users from "../../components/Users/Users";
 import Settings from "../../components/Settings/Settings";
 
 const Admin = () => {
-  const [admin, setAdmin] = useState(false);
+  const [admin, setAdmin] = useState(true);
 
   return (
     <>

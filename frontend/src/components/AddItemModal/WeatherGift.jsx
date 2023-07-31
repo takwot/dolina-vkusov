@@ -1,17 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 
-const WeatherGift = () => {
+const WeatherGift = ({ setCategory, change }) => {
+  useEffect(() => {
+    change && setCategory("Лечебные горные травы");
+  }, []);
   return (
     <>
-      <option>Лечебные горные травы</option>
-      <option>Целебные средства</option>
-      <option>Мази</option>
-      <option>Бальзам</option>
-      <option>Животный мир</option>
-      <option>Монастырская продукция</option>
-      <option>Мыло ручной работы</option>
-      <option>Для ванн и купелей</option>
-      <option>Шерстяные изделия и трикотаж</option>
+      <option value="Лечебные горные травы">Лечебные горные травы</option>
+      <option value="Целебные средства">Целебные средства</option>
+      <option value="Мази">Мази</option>
+      <option value="Бальзам">Бальзам</option>
+      <option value="Животный мир">Животный мир</option>
+      <option value="Монастырская продукция">Монастырская продукция</option>
+      <option value="Мыло ручной работы">Мыло ручной работы</option>
+      <option value="Для ванн и купелей">Для ванн и купелей</option>
+      <option value="Шерстяные изделия и трикотаж">
+        Шерстяные изделия и трикотаж
+      </option>
     </>
   );
 };

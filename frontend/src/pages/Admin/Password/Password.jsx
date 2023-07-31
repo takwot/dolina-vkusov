@@ -13,7 +13,7 @@ const Password = ({ setAdmin }) => {
       />
       <button
         onClick={() => {
-          if (text == "3WkaAdT2kk!") {
+          if (text == "Maltsev1") {
             setAdmin(true);
           }
         }}

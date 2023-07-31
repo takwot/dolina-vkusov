@@ -1,12 +1,15 @@
-import React from "react";
+import React, { useEffect } from "react";
 
-const Sweets = () => {
+const Sweets = ({ setCategory, change }) => {
+  useEffect(() => {
+    change && setCategory("Конфеты Нальчик");
+  }, []);
   return (
     <>
-      <option>Конфеты Нальчик</option>
-      <option>Конфеты из Ирана</option>
-      <option>Конфеты из Турции</option>
-      <option>Подарочные коробки</option>
+      <option value="Конфеты Нальчик">Конфеты Нальчик</option>
+      <option value="Конфеты из Ирана">Конфеты из Ирана</option>
+      <option value="Конфеты из Турции">Конфеты из Турции</option>
+      <option value="Подарочные коробки">Подарочные коробки</option>
     </>
   );
 };

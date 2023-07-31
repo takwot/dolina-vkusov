@@ -9,11 +9,15 @@ const getRaiting = async (req, res) => {
 };
 
 const createRaiting = async (req, res) => {
-  const { name, text } = req.body;
+  const { name, text, raiting, image } = req.body;
+
+  console.log(image);
 
   const newRaiting = new Raiting({
     name,
     text,
+    raiting,
+    image,
   });
 
   newRaiting.save();

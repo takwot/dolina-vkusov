@@ -5,6 +5,7 @@ const itemController = require("../controllers/ItemController");
 const router = Router();
 
 router.post("/item", itemController.createItem);
+router.patch("/item", itemController.changeItem);
 router.get("/item/catalog", itemController.getItem);
 router.get("/item", itemController.getAllItem);
 router.get("/item/category", itemController.getItemByCategory);

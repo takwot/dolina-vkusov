@@ -50,17 +50,31 @@
 
 .raiting_container {
   width: 80%;
-  border: 1px solid rgba(128, 128, 128, 0.493);
-  padding: 20px;
+  border: 1px solid rgba(128, 128, 128, 0.253);
   border-bottom: 15px;
   border-radius: 20px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  img {
+    margin-top: 10px;
+    max-width: 600px;
+  }
   p {
+    margin-top: 10px;
     font-size: 20px;
   }
 }
 
 .name {
-  margin-bottom: 15px;
   font-size: 17px;
   font-weight: 600;
+}
+
+@media (max-width: 1000px) {
+  .raiting_container {
+    img {
+      max-width: 300px;
+    }
+  }
 }

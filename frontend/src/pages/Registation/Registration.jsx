@@ -19,6 +19,7 @@ const Registration = ({ setting }) => {
 
   const [name, setName] = useState("");
   const [password, setPassword] = useState("");
+  const [againPassword, setAgainPassword] = useState("");
   const [email, setEmail] = useState("");
 
   const [open, setOpen] = useState(false);
@@ -26,18 +27,23 @@ const Registration = ({ setting }) => {
   const [phone, setPhone] = useState("");
 
   const clickHandle = () => {
-    api.createUser(email, name, password, phone).then(res => {
-      if (res.data.message == "Error") {
-        setWarning("error");
-        setOpen(true);
-      } else {
-        setCookie("email", email);
-        setCookie("password", password);
-        dispatch(setUser(res.data));
-        setWarning("success");
-        setOpen(true);
-      }
-    });
+    if (againPassword === password) {
+      api.createUser(email, name, password, phone).then(res => {
+        if (res.data.message == "Error") {
+          setWarning("error");
+          setOpen(true);
+        } else {
+          setCookie("email", email);
+          setCookie("password", password);
+          dispatch(setUser(res.data));
+          setWarning("success");
+          setOpen(true);
+        }
+      });
+    } else {
+      setWarning("error");
+      setOpen(true);
+    }
   };
 
   return (
@@ -132,6 +138,26 @@ const Registration = ({ setting }) => {
               type="password"
               onChange={e => {
                 setPassword(e.target.value);
+              }}
+            />
+          </div>
+          <div className={styles.input_cotainer}>
+            <HttpsOutlinedIcon
+              sx={{
+                position: "absolute",
+                color: "#333",
+                fontSize: 25,
+                marginTop: "-24px",
+                marginLeft: "20px",
+                zIndex: 0,
+              }}
+            />
+            <input
+              placeholder="Повторите пароль*"
+              value={againPassword}
+              type="password"
+              onChange={e => {
+                setAgainPassword(e.target.value);
               }}
             />
           </div>

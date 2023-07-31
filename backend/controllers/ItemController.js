@@ -1,5 +1,44 @@
 const Item = require("../model/Item");
 
+const changeItem = async (req, res) => {
+  const {
+    name,
+    price,
+    img,
+    description,
+    maker,
+    year,
+    energy,
+    type,
+    category,
+    mini_category,
+    structure,
+    id,
+  } = req.body;
+
+  const changing = await Item.findOneAndUpdate(
+    { _id: id },
+    {
+      name,
+      price,
+      img,
+      description,
+      maker,
+      year,
+      energy,
+      type,
+      category,
+      mini_category,
+      structure,
+    },
+    {
+      new: true,
+    }
+  );
+
+  res.json(changing);
+};
+
 const createItem = async (req, res) => {
   const {
     name,
@@ -90,5 +129,6 @@ module.exports = {
   getItemByCategory,
   getItemOne,
   getItemSecond,
+  changeItem,
   getItem,
 };

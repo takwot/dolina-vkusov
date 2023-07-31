@@ -1,7 +1,8 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "http://45.12.236.195:4001/api/",
+  // baseURL: "http://45.12.236.195:4001/api/",
+  baseURL: "http://localhost:4001/api/",
 });
 
 const api = {
@@ -31,8 +32,13 @@ const api = {
   allRaiting() {
     return instance.get("raiting");
   },
-  addRaiting(name, text) {
-    return instance.post("raiting", { name, text });
+  addRaiting(name, text, value, image) {
+    return instance.post("raiting", {
+      name,
+      text,
+      raiting: value,
+      image: image,
+    });
   },
   loginUser(email, password) {
     return instance.get(`login?email=${email}&password=${password}`);
@@ -49,6 +55,9 @@ const api = {
   createItem(data) {
     console.log(data.img[0]);
     return instance.post("item", data);
+  },
+  changeItem(data) {
+    return instance.patch("item", data);
   },
   allItem() {
     return instance.get("item");

@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import styles from "./AddItemModal.module.scss";
 import WeatherGift from "./WeatherGift";
 import Sweets from "./Sweets";
@@ -9,7 +9,7 @@ import Sweet from "./Sweet";
 import axios from "axios";
 import api from "../../api/api";
 
-const AddItemModal = ({ setModal, setCart }) => {
+const AddItemModal = ({ setModal, setCart, change, id, setChange }) => {
   const ref = useRef();
 
   const [name, setName] = useState("");
@@ -25,27 +25,71 @@ const AddItemModal = ({ setModal, setCart }) => {
   const [structure, setStructure] = useState("");
   const [photo, setPhoto] = useState(false);
 
-  const clickHandle = () => {
-    const data = {
-      name,
-      price,
-      img: file,
-      description: des,
-      maker,
-      type,
-      energy,
-      year,
-      structure,
-      category,
-      mini_category: miniType,
-    };
-    api.createItem(data).then(res => {
-      alert("Успешно!");
-      api.allItem().then(res => {
-        setCart(res.data);
+  useEffect(() => {
+    if (change === true) {
+      api.getOneItem(id).then(res => {
+        console.log(res.data);
+        setName(res.data.name);
+        setFile(res.data.img);
+        setPhoto(true);
+        setPrice(res.data.price);
+        setDes(res.data.description);
+        setMaker(res.data.maker);
+        setEnergy(res.data.energy);
+        setYear(res.data.year);
+        setStructure(res.data.structure);
+        setType(res.data.type);
+        setCategory(res.data.category);
+        setMiniType(res.data.mini_category);
       });
-      setModal(false);
-    });
+    }
+  }, []);
+
+  const clickHandle = () => {
+    if (change === true) {
+      const data = {
+        name,
+        price,
+        img: file,
+        description: des,
+        maker,
+        type,
+        energy,
+        year,
+        structure,
+        category,
+        mini_category: miniType,
+        id: id,
+      };
+      api.changeItem(data).then(res => {
+        api.allItem().then(res => {
+          setCart(res.data);
+        });
+        setModal(false);
+        setChange(false);
+      });
+    } else {
+      const data = {
+        name,
+        price,
+        img: file,
+        description: des,
+        maker,
+        type,
+        energy,
+        year,
+        structure,
+        category,
+        mini_category: miniType,
+      };
+      api.createItem(data).then(res => {
+        alert("Успешно!");
+        api.allItem().then(res => {
+          setCart(res.data);
+        });
+        setModal(false);
+      });
+    }
   };
 
   return (
@@ -152,14 +196,15 @@ const AddItemModal = ({ setModal, setCart }) => {
         <div className={styles.input_container}>
           <p>Тип товара</p>
           <select
+            value={type}
             onChange={e => {
               setType(e.target.value);
             }}
           >
-            <option>Дары природы</option>
-            <option>Конфеты</option>
-            <option>Мед и сладости</option>
-            <option>Кулинария</option>
+            <option value="Дары природы">Дары природы</option>
+            <option value="Конфеты">Конфеты</option>
+            <option value="Мед и сладости">Мед и сладости</option>
+            <option value="Кулинария">Кулинария</option>
           </select>
         </div>
         <div className={styles.input_container}>
@@ -169,10 +214,18 @@ const AddItemModal = ({ setModal, setCart }) => {
               setCategory(e.target.value);
             }}
           >
-            {type == "Дары природы" && <WeatherGift />}
-            {type == "Конфеты" && <Sweets />}
-            {type == "Мед и сладости" && <HonnyAndSweets />}
-            {type == "Кулинария" && <Cooking />}
+            {type == "Дары природы" && (
+              <WeatherGift setCategory={setCategory} change={change} />
+            )}
+            {type == "Конфеты" && (
+              <Sweets setCategory={setCategory} change={change} />
+            )}
+            {type == "Мед и сладости" && (
+              <HonnyAndSweets setCategory={setCategory} change={change} />
+            )}
+            {type == "Кулинария" && (
+              <Cooking setCategory={setCategory} change={change} />
+            )}
           </select>
         </div>
         {(category == "Продукция пчеловодства" ||
@@ -184,8 +237,12 @@ const AddItemModal = ({ setModal, setCart }) => {
                 setMiniType(e.target.value);
               }}
             >
-              {category == "Продукция пчеловодства" && <Honny />}
-              {category == "Восточные сладости" && <Sweet />}
+              {category == "Продукция пчеловодства" && (
+                <Honny setCategory={setMiniType} change={change} />
+              )}
+              {category == "Восточные сладости" && (
+                <Sweet setCategory={setMiniType} change={change} />
+              )}
             </select>
           </div>
         )}

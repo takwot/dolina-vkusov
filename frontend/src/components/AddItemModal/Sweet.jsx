@@ -1,16 +1,19 @@
-import React from "react";
+import React, { useEffect } from "react";
 
-const Sweet = () => {
+const Sweet = ({ setCategory, change }) => {
+  useEffect(() => {
+    change && setCategory("Рахат лукум");
+  }, []);
   return (
     <>
-      <option>Рахат лукум</option>
-      <option>Нуга</option>
-      <option>Чурчхела</option>
-      <option>Пастила</option>
-      <option>Пахвала</option>
-      <option>Халва</option>
-      <option>Щербет</option>
-      <option>Джезерье</option>
+      <option value="Рахат лукум">Рахат лукум</option>
+      <option value="Нуга">Нуга</option>
+      <option value="Чурчхела">Чурчхела</option>
+      <option value="Пастила">Пастила</option>
+      <option value="Пахвала">Пахвала</option>
+      <option value="Халва">Халва</option>
+      <option value="Щербет">Щербет</option>
+      <option value="Джезерье">Джезерье</option>
     </>
   );
 };

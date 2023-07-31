@@ -14,6 +14,7 @@ import { useSelector } from "react-redux";
 import SearchIcon from "@mui/icons-material/Search";
 import HeaderNav from "../HeaderNav/HeaderNav";
 import Input from "../Input/Input";
+import { useCookies } from "react-cookie";
 
 const Header = ({ setting }) => {
   const [view, setView] = useState(false);
@@ -23,6 +24,7 @@ const Header = ({ setting }) => {
   const user = useSelector(state => state.user);
   const cart = useSelector(state => state.user.cart);
   const favourity = useSelector(state => state.user.favourity);
+  const [cookies, setCookie, removeCookie] = useCookies();
 
   return (
     <>
@@ -30,20 +32,24 @@ const Header = ({ setting }) => {
         <NavLink className={styles.text} to={"/about"}>
           О нас
         </NavLink>
-        {/* <NavLink className={styles.text}>Доставка и оплата</NavLink> */}
         <NavLink className={styles.text} to={"/raiting"}>
           Отзывы
         </NavLink>
         <div className={styles.reg_container}>
           <PermIdentityOutlinedIcon sx={{ color: "white" }} />
           {user.isReg == true ? (
-            <p
-              onClick={() => {
-                console.log(cart[0]);
-              }}
-            >
-              {user.user.name}
-            </p>
+            <>
+              <p>{user.user.name}</p>
+              <p
+                onClick={() => {
+                  removeCookie("email");
+                  removeCookie("password");
+                  window.location.reload();
+                }}
+              >
+                Выйти
+              </p>
+            </>
           ) : (
             <>
               <NavLink className={styles.text} to={"/login"}>
@@ -56,11 +62,11 @@ const Header = ({ setting }) => {
             </>
           )}
         </div>
-        {user.user.email == "I.maltsev95@gmail.com" && (
-          <NavLink className={styles.text} to={"/admin/main"}>
-            Админ панель
-          </NavLink>
-        )}
+        {/* {user.user.email == "I.maltsev95@gmail.com" && ( */}
+        <NavLink className={styles.text} to={"/admin/main"}>
+          Админ панель
+        </NavLink>
+        {/* )} */}
       </div>
       <div className={styles.bottom_container}>
         <div className={styles.container}>
