@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 
 const Sweet = ({ setCategory, change }) => {
   useEffect(() => {
-    change && setCategory("Рахат лукум");
+    change === false && setCategory("Рахат лукум");
   }, []);
   return (
     <>

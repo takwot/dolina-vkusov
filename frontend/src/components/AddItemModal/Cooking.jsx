@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 
 const Cooking = ({ setCategory, change }) => {
   useEffect(() => {
-    change && setCategory("Сыры");
+    change === false && setCategory("Сыры");
   }, []);
   return (
     <>

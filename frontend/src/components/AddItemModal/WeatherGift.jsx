@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 
 const WeatherGift = ({ setCategory, change }) => {
   useEffect(() => {
-    change && setCategory("Лечебные горные травы");
+    change === false && setCategory("Лечебные горные травы");
   }, []);
   return (
     <>

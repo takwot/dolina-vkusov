@@ -28,10 +28,6 @@ app.use("/api", faqRouter);
 app.use("/api", carucelRouter);
 app.use("/api", settingsRouter);
 
-http.createServer({}, app).listen(4001, () => {
+app.listen(4001, () => {
   console.log("Running");
 });
-
-// app.listen(4001, () => {
-//   console.log("Running");
-// });

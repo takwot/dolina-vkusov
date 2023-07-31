@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 
 const Sweets = ({ setCategory, change }) => {
   useEffect(() => {
-    change && setCategory("Конфеты Нальчик");
+    change === false && setCategory("Конфеты Нальчик");
   }, []);
   return (
     <>
