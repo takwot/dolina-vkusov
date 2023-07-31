@@ -1,6 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
+const http = require("http");
 
 mongoose
   .connect("mongodb://45.90.32.77:27017/store", {
@@ -27,6 +28,10 @@ app.use("/api", faqRouter);
 app.use("/api", carucelRouter);
 app.use("/api", settingsRouter);
 
-app.listen(4001, () => {
+http.createServer({}, app).listen(4001, () => {
   console.log("Running");
 });
+
+// app.listen(4001, () => {
+//   console.log("Running");
+// });

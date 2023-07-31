@@ -62,11 +62,11 @@ const Header = ({ setting }) => {
             </>
           )}
         </div>
-        {/* {user.user.email == "I.maltsev95@gmail.com" && ( */}
-        <NavLink className={styles.text} to={"/admin/main"}>
-          Админ панель
-        </NavLink>
-        {/* )} */}
+        {user.user.email == "I.maltsev95@gmail.com" && (
+          <NavLink className={styles.text} to={"/admin/main"}>
+            Админ панель
+          </NavLink>
+        )}
       </div>
       <div className={styles.bottom_container}>
         <div className={styles.container}>
