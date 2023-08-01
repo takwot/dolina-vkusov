@@ -11,7 +11,7 @@ import FavourityItems from "../../components/FavourityItems/FavourityItems";
 import About from "../../components/About/About";
 
 const Admin = () => {
-  const [admin, setAdmin] = useState(true);
+  const [admin, setAdmin] = useState(false);
 
   return (
     <>
