@@ -20,6 +20,8 @@ const raitingRouter = require("./routes/raiting.route");
 const faqRouter = require("./routes/faq.route");
 const carucelRouter = require("./routes/carucel.route");
 const settingsRouter = require("./routes/setting.route");
+const favourityRouter = require("./routes/favourity.route");
+const aboutRouter = require("./routes/about.route");
 
 app.use("/api", userRouter);
 app.use("/api", itemRouter);
@@ -27,6 +29,8 @@ app.use("/api", raitingRouter);
 app.use("/api", faqRouter);
 app.use("/api", carucelRouter);
 app.use("/api", settingsRouter);
+app.use("/api", favourityRouter);
+app.use("/api", aboutRouter);
 
 app.listen(4001, () => {
   console.log("Running");

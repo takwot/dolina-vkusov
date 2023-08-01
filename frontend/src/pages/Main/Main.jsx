@@ -19,14 +19,17 @@ import AppsOutlinedIcon from "@mui/icons-material/AppsOutlined";
 
 const Main = ({ setting }) => {
   const [img, setImg] = useState([]);
+  const [favourity, setFavourity] = useState([]);
 
   useEffect(() => {
     api.getCarucelImg().then(res => {
       setImg(res.data);
     });
+    api.getFavourityItems().then(res => {
+      setFavourity(res.data);
+    });
   }, []);
 
-  const user = useSelector(state => state.user);
   return (
     <>
       <Header setting={setting} />
@@ -53,7 +56,18 @@ const Main = ({ setting }) => {
         </div>
         <div className={styles.news_container}>
           <p className={styles.text}>Лидеры продаж</p>
-          <div className={styles.item_container}>Тут пока ничего нет</div>
+          <div className={styles.item_container}>
+            {favourity.length === 0
+              ? "Тут пока ничего нет"
+              : favourity.map(el => (
+                  <CardItem
+                    price={el.price}
+                    name={el.name}
+                    id={el.id}
+                    img={el.img}
+                  />
+                ))}
+          </div>
         </div>
         <Questions />
       </div>

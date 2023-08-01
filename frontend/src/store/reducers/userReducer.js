@@ -16,8 +16,6 @@ export function userReducer(state = defaultState, action) {
         ...state,
         user: action.payload,
         isReg: true,
-        cart: action.payload.cart,
-        favourity: action.payload.favourite,
       };
     }
     case SET_CART: {

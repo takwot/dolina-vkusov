@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const instance = axios.create({
-  baseURL: "http://45.12.236.195:4001/api/",
+  baseURL: "http://localhost:4001/api/",
 });
 
 const api = {
@@ -31,13 +31,8 @@ const api = {
   allRaiting() {
     return instance.get("raiting");
   },
-  addRaiting(name, text, value, image) {
-    return instance.post("raiting", {
-      name,
-      text,
-      raiting: value,
-      image: image,
-    });
+  addRaiting(data) {
+    return instance.post("raiting", data);
   },
   loginUser(email, password) {
     return instance.get(`login?email=${email}&password=${password}`);
@@ -73,9 +68,6 @@ const api = {
   deleteFaq(id) {
     return instance.delete("faq", { id });
   },
-  setCart(email, cart) {
-    return instance.patch("cart", { email, cart });
-  },
   setFavourity(email, favourity) {
     return instance.patch("favourity", { email, favourity });
   },
@@ -93,6 +85,27 @@ const api = {
   },
   updateCarucelImg(id, img) {
     return instance.patch(`carucel?id=${id}`, { img: img });
+  },
+  getAbout() {
+    return instance.get("about");
+  },
+  changeAbout(text, image, id) {
+    return instance.patch("about", { text, image, id });
+  },
+  deleteAbout(id) {
+    return instance.delete(`about?id=${id}`);
+  },
+  createAbout(text, image) {
+    return instance.post("about", { text, image });
+  },
+  getFavourityItems() {
+    return instance.get("favourity");
+  },
+  deleteFavourityItems(id) {
+    return instance.delete(`favourity?id=${id}`);
+  },
+  createFavourityItems(name, img, price, id) {
+    return instance.post("favourity", { name, img, price, id });
   },
 };
 

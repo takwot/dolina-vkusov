@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import styles from "./Header.module.scss";
 import PermIdentityOutlinedIcon from "@mui/icons-material/PermIdentityOutlined";
 import { NavLink } from "react-router-dom";
@@ -15,6 +15,7 @@ import SearchIcon from "@mui/icons-material/Search";
 import HeaderNav from "../HeaderNav/HeaderNav";
 import Input from "../Input/Input";
 import { useCookies } from "react-cookie";
+import LocalPhoneIcon from "@mui/icons-material/LocalPhone";
 
 const Header = ({ setting }) => {
   const [view, setView] = useState(false);
@@ -82,7 +83,12 @@ const Header = ({ setting }) => {
           </NavLink>
           <div className={styles.cont_right}>
             <div className={styles.info_container}>
-              <p className={styles.number_text}>{setting.phone}</p>
+              <div
+                style={{ display: "flex", gap: "6px", alignItems: "center" }}
+              >
+                <LocalPhoneIcon sx={{ color: "#9c52b3" }} />
+                <p className={styles.number_text}>{setting.phone}</p>
+              </div>
               <p className={styles.graph_text}>{setting.time}</p>
             </div>
           </div>

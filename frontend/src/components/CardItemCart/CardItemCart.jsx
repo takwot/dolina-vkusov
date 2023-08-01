@@ -1,24 +1,14 @@
 import React, { useState } from "react";
 import styles from "./CardItem.module.scss";
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import FavoriteBorderOutlinedIcon from "@mui/icons-material/FavoriteBorderOutlined";
-import FavoriteIcon from "@mui/icons-material/Favorite";
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { setCart, setFavourity } from "../../store/reducers/userReducer";
-import api from "../../api/api";
+import { setCart } from "../../store/reducers/userReducer";
 import { useCookies } from "react-cookie";
 
 const CardItemCart = ({ img, name, price, id, count }) => {
-  const [bg, setBg] = useState(false);
   const [counter, setCounter] = useState(count);
 
   const cart = useSelector(state => state.user.cart);
-  const favourity = useSelector(state => state.user.favourity);
-  const user = useSelector(state => state.user);
-  const [cookies] = useCookies();
-
-  const [like, setLike] = useState(false);
 
   const dispatch = useDispatch();
   return (

@@ -7,6 +7,8 @@ import CarucelAdmin from "../../components/CarucelAdmin/CarucelAdmin";
 import FAQ from "../../components/FAQ/FAQ";
 import Users from "../../components/Users/Users";
 import Settings from "../../components/Settings/Settings";
+import FavourityItems from "../../components/FavourityItems/FavourityItems";
+import About from "../../components/About/About";
 
 const Admin = () => {
   const [admin, setAdmin] = useState(true);
@@ -19,7 +21,7 @@ const Admin = () => {
         <div className={styles.main_container}>
           <div className={styles.container}>
             <NavLink className={styles.link} to={"/"}>
-              вернутся в магазин
+              Вернуться в магазин
             </NavLink>
             <div className={styles.all_item}>
               <div className={styles.info_container}>
@@ -35,6 +37,12 @@ const Admin = () => {
                 <NavLink to={"/admin/users"} className={styles.faq_text}>
                   Пользователи
                 </NavLink>
+                <NavLink to={"/admin/favourity"} className={styles.faq_text}>
+                  Изранные товары
+                </NavLink>
+                <NavLink to={"/admin/about"} className={styles.faq_text}>
+                  О нас
+                </NavLink>
                 <NavLink to={"/admin/settings"} className={styles.faq_text}>
                   Настройки
                 </NavLink>
@@ -42,10 +50,12 @@ const Admin = () => {
             </div>
             <Routes>
               <Route path="/main" element={<Items />} />
+              <Route path="/favourity" element={<FavourityItems />} />
               <Route path="/carucel" element={<CarucelAdmin />} />
               <Route path="/question" element={<FAQ />} />
               <Route path="/users" element={<Users />} />
               <Route path="/settings" element={<Settings />} />
+              <Route path="/about" element={<About />} />
             </Routes>
           </div>
         </div>

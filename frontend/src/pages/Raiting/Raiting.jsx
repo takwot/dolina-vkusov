@@ -18,6 +18,23 @@ const Raiting = ({ setting }) => {
   const name = useSelector(state => state.user);
   const ref = useRef();
 
+  const clickHandle = () => {
+    const data = {
+      name: name.user.name,
+      text,
+      raiting: String(value),
+      image: image,
+    };
+    console.log(data);
+    api.addRaiting(data).then(res => {
+      console.log(res.data);
+      api.allRaiting().then(res => {
+        setRaiting(res.data);
+        console.log(res.data);
+      });
+    });
+  };
+
   useEffect(() => {
     api.allRaiting().then(res => {
       setRaiting(res.data);
@@ -78,22 +95,7 @@ const Raiting = ({ setting }) => {
                 />
               </div>
 
-              <button
-                onClick={() => {
-                  api
-                    .addRaiting(name.user.name, text, value, image)
-                    .then(() => {
-                      setText("");
-                      setValue(0);
-                      api.allRaiting(res => {
-                        setRaiting(res.data);
-                        console.log(res.data);
-                      });
-                    });
-                }}
-              >
-                Опубликовать
-              </button>
+              <button onClick={clickHandle}>Опубликовать</button>
             </>
           )}
           <p className={styles.text_raiting}>Опубликованные отзывы</p>

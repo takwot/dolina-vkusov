@@ -6,10 +6,9 @@ import FavoriteIcon from "@mui/icons-material/Favorite";
 import { NavLink } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { setCart, setFavourity } from "../../store/reducers/userReducer";
-import api from "../../api/api";
 import { useCookies } from "react-cookie";
 
-const CardItem = ({ img, name, price, admin, id, incart }) => {
+const CardItem = ({ img, name, price, admin, id }) => {
   const [bg, setBg] = useState(false);
 
   const cart = useSelector(state => state.user.cart);
